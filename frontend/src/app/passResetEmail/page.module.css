@@ -42,6 +42,10 @@
     margin: 5px 20px;
 }
 
+.inputEmail {
+    position: relative;
+}
+
 .inputEmail, .inputPassword {
     display: flex;
     flex-direction: column;
@@ -63,6 +67,22 @@
     margin-left: 8px;
 }
 
+.submitButton {
+    position: absolute;
+    right:6px; 
+    top: 48px; 
+    padding: 15px 15px; 
+    background-color: #d1d1d1; 
+    color: #535353; 
+    border: none; 
+    border-radius: 11px; 
+    cursor: pointer; 
+}
+
+.submitButton:hover {
+    background-color: #b1b1b1; 
+}
+
 .resetPassText {
     margin-left: auto; 
     display: block;
@@ -75,7 +95,7 @@
 }
 
 .signInButton {
-    margin-top: 70px;
+    margin-top: 102px;
     font-size: 2rem;
     background-color: #02B362;
     color: white;
@@ -94,6 +114,7 @@
     margin-top: 35px;
     font-size: 1.5rem;
     display: flex;    
+    border: none;
 }
 
 .signUpText {
