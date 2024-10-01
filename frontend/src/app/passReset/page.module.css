@@ -23,23 +23,19 @@
     color: #005244;
 }
 
-.boldHello {
-    font-size: 2.2rem;
-    font-weight: bold;
-    color: black;
-}
 
 .welcomeText {
     color:#535353;
     font-size: 1.7rem;
     text-align: center;
     text-wrap: wrap;
+    margin: 28px;
 }
 
 .inputField {
     display: flex;
     flex-direction: column;
-    margin: 5px 20px;
+    margin: 5px 19x;
 }
 
 .inputEmail, .inputPassword {
@@ -75,7 +71,7 @@
 }
 
 .signInButton {
-    margin-top: 70px;
+    margin-top: 109px;
     font-size: 2rem;
     background-color: #02B362;
     color: white;
