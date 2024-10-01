@@ -23,19 +23,23 @@
     color: #005244;
 }
 
+.boldHello {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: black;
+}
 
 .welcomeText {
     color:#535353;
     font-size: 1.7rem;
     text-align: center;
     text-wrap: wrap;
-    margin: 28px;
 }
 
 .inputField {
     display: flex;
     flex-direction: column;
-    margin: 5px 19x;
+    margin: 5px;
 }
 
 .inputEmail, .inputPassword {
@@ -59,19 +63,8 @@
     margin-left: 8px;
 }
 
-.resetPassText {
-    margin-left: auto; 
-    display: block;
-    margin-top: 10px; 
-    margin-right: 5px;
-    font-weight: bold;
-    font-size: 1.2rem;
-    color: #02B362;
-    text-decoration: none;
-}
-
 .signInButton {
-    margin-top: 109px;
+    margin-top: 20px;
     font-size: 2rem;
     background-color: #02B362;
     color: white;
