@@ -1,7 +1,7 @@
 
 .SignInBlock {
     position: absolute; 
-    top: 50%; 
+    top: 40%; 
     left: 50%;
     transform: translate(-50%, -50%); 
     width: 680px;
@@ -31,6 +31,7 @@
 }
 
 .welcomeText {
+    color:black;
     font-size: 1.7rem;
     text-align: center;
     text-wrap: wrap;
@@ -90,6 +91,7 @@
 }
 
 .signUpBox {
+    color:black;
     margin-top: 35px;
     font-size: 1.5rem;
     display: flex;    
