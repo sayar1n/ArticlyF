@@ -1,7 +1,8 @@
 from pydantic import BaseModel
 
 
-class UserRegisterRequestSchema(BaseModel):
+class RegisterUserSchemaRequest(BaseModel):
     nickname: str
     email: str
     password: str
+    logo: str | None = None
