@@ -2,8 +2,8 @@
 
 ## Стек технологий: 
 
-    Frontend: Vue.JS, CSS
-    Backend: Django
+    Frontend: Next.JS, CSS
+    Backend: FastAPI
     DataBase: PostgreSQL
 
 
