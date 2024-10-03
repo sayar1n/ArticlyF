@@ -9,15 +9,15 @@ from auth.models import User
 from auth.schemas import RegisterUserSchemaRequest
 from auth.security import manager, pwd_context, limiter
 from core.database import create_session
-from task.endpoints import router as task_router # noqa
-from note.endpoints import router as note_router  # noqa
+from task.endpoints import router as task_router
+from note.endpoints import router as note_router
 
 app = FastAPI(
     title="Articly App"
 )
 
-app.include_router(note_router, prefix="/note")
-app.include_router(task_router, prefix="/task")
+app.include_router(note_router, prefix="/note", tags=("Notes",))
+app.include_router(task_router, prefix="/task", tags=("Tasks",))
 
 
 app.state.limiter = limiter

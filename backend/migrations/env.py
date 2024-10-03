@@ -7,9 +7,10 @@ from alembic import context
 
 from auth.models import User  # noqa
 from note.models import Note  # noqa
+from task.models import Task  # noqa
 from core.base_model import Base  # noqa
 
-from core.config import settings  # noqa
+from core.config import settings
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

@@ -51,5 +51,6 @@ class UpdateTaskResponseSchema(BaseModel):
     importance: bool
     urgency: bool
     phase: str
+    date_of_completion: datetime
     updated_at: datetime
 
