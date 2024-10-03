@@ -1,0 +1,25 @@
+.mainBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+
+    font-size: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.logo {
+    font-size: 3rem;
+    letter-spacing: 15px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #005244;
+}
+
+.error {
+    text-align: center; 
+    margin: 5px;
+
+    font-size: 2rem;
+}
