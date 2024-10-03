@@ -16,6 +16,7 @@ app = FastAPI(
 )
 
 app.include_router(router, prefix="/note", tags=["Notes"])
+app.include_router(router, prefix="/task", tags=["Tasks"])
 
 
 app.state.limiter = limiter
