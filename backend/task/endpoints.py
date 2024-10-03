@@ -9,7 +9,7 @@ from starlette.requests import Request
 from auth.security import manager, limiter  # noqa
 
 from core.database import get_session  # noqa
-from task.models import Task, task  # noqa
+from task.models import Task  # noqa
 from task.schemas import TaskSchema, CreateTaskRequestSchema, CreateTaskResponseSchema, UpdateTaskRequestSchema, UpdateTaskResponseSchema  # noqa
 
 

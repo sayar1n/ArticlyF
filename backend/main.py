@@ -10,6 +10,7 @@ from auth.schemas import RegisterUserSchemaRequest
 from auth.security import manager, pwd_context, limiter
 from core.database import create_session
 from note.endpoints import router  # noqa
+from task.endpoints import router  # noqa
 
 app = FastAPI(
     title="Articly App"
