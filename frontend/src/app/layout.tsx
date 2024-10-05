@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { JetBrains_Mono } from 'next/font/google'
-import '@/styles/globals.css'
+import '@/styles/globals.scss'
 
 const jetBrainsMono = JetBrains_Mono({ subsets: ['latin'] })
 
