@@ -1,7 +1,18 @@
+"use client"
+
 import Link from 'next/link';
 import styles from './Header.module.scss';
+// import { AlignJustify, X } from 'lucide-react';
+import React, { useState} from 'react';
+
 
 export default function Header() {
+    const [isOpen, setIsOpen] = useState(false);
+
+    const toggleMenu = () => {
+        setIsOpen(!isOpen);
+    };
+
     return (
         <header className={styles.header}>
             <div className={styles.logo}>Articly</div>
