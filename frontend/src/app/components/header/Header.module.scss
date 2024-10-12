@@ -21,8 +21,8 @@
 .navLink {
     color: white;
     text-decoration: none;
-    margin: 0px 15px 0px 15px;
-  }
+    margin: 0 15px;
+}
 
 .signInButton {
     background-color: #02B362;
@@ -30,4 +30,46 @@
     padding: 0.5rem 1rem;
     border-radius: 4px;
     text-decoration: none;
+}
+
+.hamburgerIcon {
+    display: none;
+}
+
+@media screen and (max-width: 1024px) {
+    .nav {
+        display: none;
+    }
+    .headerButtons {
+        display: flex;
+        flex-direction: row-reverse;
+    }
+    .hamburgerIcon {
+        display: block;
+        background: none;
+        border: none;
+    }
+    .signInButton {
+        display: none;
+    }
+    .signInButtonOpen {
+        display: block;
+        margin: 10px 0 20px;
+        background-color: #02B362;
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        text-decoration: none;
+    }
+    .navOpen {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #005244;
+    }
+    .navLinkOpen {
+        text-decoration: none;
+        margin: 10px 0;
+        color: white;
+    }
 }
