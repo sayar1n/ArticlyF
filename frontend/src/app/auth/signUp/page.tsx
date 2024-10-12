@@ -111,7 +111,7 @@ export default function SignUp() {
         {/* Ссылка на авторизацию */}
         <div className={styles.signUpBox}>
           <span>Есть аккаунт?</span>
-          <Link href="/signIn" className={styles.signUpText}>
+          <Link href="/auth/signIn" className={styles.signUpText}>
             Войти
           </Link>
         </div>

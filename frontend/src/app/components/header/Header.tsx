@@ -23,7 +23,7 @@ export default function Header() {
                 <a href="#feedback" className={styles.navLink}>Обратная связь</a>
                 <a href="#support" className={styles.navLink}>Поддержка</a>
             </nav>
-            <Link href="/signIn" className={styles.signInButton}>Войти</Link>
+            <Link href="/auth/signIn" className={styles.signInButton}>Войти</Link>
         </header>
     )
 }

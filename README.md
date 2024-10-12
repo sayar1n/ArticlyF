@@ -1,10 +1,11 @@
 # Articly - приложение по администрированию рабочего времени с функциями ИИ
 
-## Стек технологий: 
+## Стек технологий:
 
-    Frontend: Next.JS, CSS
+    Frontend: Next.JS, SCSS
     Backend: FastAPI
     DataBase: PostgreSQL
+
 
 
 ## Авторы

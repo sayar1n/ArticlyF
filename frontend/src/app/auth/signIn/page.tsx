@@ -53,7 +53,8 @@ export default function SignIn() {
     };
 
     return (
-        <div className={styles.SignInBlock}>
+        <div className={styles.signInBlock}>
+
             <div className={styles.logo}>Articly</div>
             <div className={styles.welcomeText}>
                 <p className={styles.boldHello}>С возвращением!</p>
@@ -101,7 +102,7 @@ export default function SignIn() {
             </form>
             <div className={styles.signUpBox}>
                 <span>Нет аккаунта?</span>
-                <Link href="/signUp" className={styles.signUpText}>Зарегистрироваться</Link>
+                <Link href="/auth/signUp" className={styles.signUpText}>Зарегистрироваться</Link>
             </div>
         </div>
     )
