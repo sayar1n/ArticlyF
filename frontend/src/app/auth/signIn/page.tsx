@@ -28,7 +28,7 @@ export default function SignIn() {
         setError(null);
 
         const formData = new URLSearchParams();
-        formData.append('username', email); // или используйте nickname, если бекенд ожидает его
+        formData.append('username', email);
         formData.append('password', password);
 
         try {
@@ -54,56 +54,76 @@ export default function SignIn() {
 
     return (
         <div className={styles.signInBlock}>
-
+          <div className={styles.formSection}>
+            {/* Логотип */}
             <div className={styles.logo}>Articly</div>
-            <div className={styles.welcomeText}>
-                <p className={styles.boldHello}>С возвращением!</p>
-                <p>Войдите в аккаунт, чтобы продолжить или зарегистрируйтесь</p>
-            </div>
+            <p className={styles.welcomeText}>Войдите в аккаунт, чтобы продолжить или зарегистрируйтесь</p>
+
+            {/* Форма входа */}
             <form onSubmit={handleSignIn}>
-                <div className={styles.inputField}>
-                    <div className={styles.inputNickname}>
-                        <label className={styles.label}>Никнейм:</label>
-                        <input
-                            type="text"
-                            className={styles.nicknameInputBox}
-                            placeholder="Ваш никнейм"
-                            value={nickname}
-                            onChange={(e) => setNickname(e.target.value)}
-                            required
-                        />
-                    </div>
-                    <div className={styles.inputEmail}>
-                        <label className={styles.label}>Почта:</label>
-                        <input
-                            type="email"
-                            className={styles.emailInputBox}
-                            placeholder="email@example.com"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            required
-                        />
-                    </div>
-                    <div className={styles.inputPassword}>
-                        <label className={styles.label}>Пароль:</label>
-                        <input
-                            type="password"
-                            className={styles.passwordInputBox}
-                            placeholder="********"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
-                        />
-                    </div>
-                    <Link href="/passResetEmail" className={styles.resetPassText}>Забыли пароль?</Link>
+              {/* Поле ввода Никнейма */}
+              <div className={styles.inputField}>
+                <div className={styles.inputNickname}>
+                  <label className={styles.label}>Никнейм:</label>
+                  <input
+                    type="text"
+                    className={styles.nicknameInputBox}
+                    placeholder="Ваш никнейм"
+                    value={nickname}
+                    onChange={(e) => setNickname(e.target.value)}
+                    required
+                  />
                 </div>
-                {error && <p style={{ color: 'red' }}>{error}</p>}
-                <button type="submit" className={styles.signInButton}>Войти</button>
+
+                {/* Поле ввода Email */}
+                <div className={styles.inputEmail}>
+                  <label className={styles.label}>Почта:</label>
+                  <input
+                    type="email"
+                    className={styles.emailInputBox}
+                    placeholder="email@example.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                  />
+                </div>
+
+                {/* Поле ввода Пароля */}
+                <div className={styles.inputPassword}>
+                  <label className={styles.label}>Пароль:</label>
+                  <input
+                    type="password"
+                    className={styles.passwordInputBox}
+                    placeholder="********"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                  />
+                </div>
+
+                {/* Ссылка на сброс пароля */}
+                <Link href="/passResetEmail" className={styles.resetPassText}>
+                  Забыли пароль?
+                </Link>
+              </div>
+
+              {/* Отображение ошибки */}
+              {error && <p style={{ color: "red" }}>{error}</p>}
+
+              {/* Кнопка отправки формы */}
+              <button type="submit" className={styles.signInButton}>
+                Войти
+              </button>
             </form>
+
+            {/* Ссылка на регистрацию */}
             <div className={styles.signUpBox}>
-                <span>Нет аккаунта?</span>
-                <Link href="/auth/signUp" className={styles.signUpText}>Зарегистрироваться</Link>
+              <span>Нет аккаунта?</span>
+              <Link href="/auth/signUp" className={styles.signUpText}>
+                Зарегистрироваться
+              </Link>
             </div>
+          </div>
         </div>
-    )
+      );
 }
