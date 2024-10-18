@@ -19,7 +19,6 @@ app = FastAPI(
 app.include_router(note_router, prefix="/note", tags=("Notes",))
 app.include_router(task_router, prefix="/task", tags=("Tasks",))
 
-
 app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
@@ -36,7 +35,6 @@ async def register(request: Request, user: RegisterUserSchemaRequest):
     existing_user = db.query(User).filter_by(email=user.email).first()
     if existing_user:
         raise HTTPException(status_code=400, detail="User is already registered.")
-
     user.password = pwd_context.hash(user.password)
     new_user = User(**user.dict())
     db.add(new_user)
@@ -50,12 +48,10 @@ async def register(request: Request, user: RegisterUserSchemaRequest):
 def login(request: Request, data: OAuth2PasswordRequestForm = Depends()):
     username = data.username
     password = data.password
-
     user = query_user(username)
     if not user:
         raise InvalidCredentialsException
     elif not pwd_context.verify(password, user.password):
         raise InvalidCredentialsException
-
     access_token = manager.create_access_token(data={"sub": username})
     return {"access_token": access_token}
