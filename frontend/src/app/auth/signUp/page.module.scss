@@ -1,0 +1,179 @@
+.signInBlock {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0px 20px 0px 20px;
+}
+
+.formSection {
+    max-width: 680px;
+    min-height: 840px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.titleBlock {
+    text-align: center;
+    margin-bottom: 40px;
+
+    .logo {
+        margin-bottom: 10px;
+        font-size: 42px;
+        letter-spacing: 5px;
+        color: #005244;
+    }
+
+    span {
+        font-size: 28px;
+        color: #091219;
+    }
+}
+
+.inputNickname, .inputEmail, .inputPassword {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    font-size: 20px;
+
+    .label {
+        font-size: 20px;
+        font-weight: 300;
+        margin-top: 15px;
+        margin-left: 8px;
+    }
+}
+
+.nicknameInputBox, .emailInputBox, .passwordInputBox {
+    border-radius: 11px;
+    border: 1px solid #d1d1d1;
+    width: 605px;
+    height: 53px;
+    background-color: #d1d1d1;
+    text-indent: 15px;
+    margin: 5px;
+    margin-bottom: 10px;
+}
+
+.signInButton {
+    display: block;
+    margin: 0 auto;
+    margin-top: 30px;
+    padding: 20px 50px;
+    font-size: 22px;
+    background-color: #02B362;
+    color: #ffffff;
+    border: none;
+    border-radius: 15px;
+}
+
+.signUpBox {
+    margin-top: 20px;
+    font-size: 20px;
+    span {
+        color: #091219;
+    }
+
+    .signUpText {
+        margin-left: 5px;
+        color: #02B362;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .titleBlock {
+        margin-bottom: 20px;
+        span {
+            font-size: 22px;
+            margin: 0px 20px 0px 20px;
+        }
+    }
+
+    .inputNickname, .inputEmail, .inputPassword {
+        font-size: 18px;
+
+        .label {
+            font-size: 18px;
+        }
+    }
+
+    .nicknameInputBox, .emailInputBox, .passwordInputBox {
+        width: 505px;
+    }
+
+    .signInButton {
+        padding: 15px 40px;
+        font-size: 22px;
+    }
+
+    .signUpBox {
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    .titleBlock {
+        span {
+            font-size: 18px;
+            margin: 0px 20px 0px 20px;
+        }
+    }
+
+    .inputNickname, .inputEmail, .inputPassword {
+        font-size: 16px;
+
+        .label {
+            font-size: 16px;
+        }
+    }
+
+    .nicknameInputBox, .emailInputBox, .passwordInputBox {
+        width: 405px;
+    }
+
+    .signInButton {
+        padding: 15px 40px;
+        font-size: 20px;
+    }
+
+    .signUpBox {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 475px) {
+    .formSection {
+        max-width: 680px;
+        min-height: 840px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-radius: none;
+        box-shadow: none;
+    }
+
+    .titleBlock {
+        .logo {
+            font-size: 32px;
+        }
+        span {
+            font-size: 16px;
+            margin: 0px 20px 0px 20px;
+        }
+    }
+
+    .nicknameInputBox, .emailInputBox, .passwordInputBox {
+        width: 280px;
+        height: 42px;
+    }
+
+    .signInButton {
+        padding: 15px 20px;
+        font-size: 16px;
+    }
+}

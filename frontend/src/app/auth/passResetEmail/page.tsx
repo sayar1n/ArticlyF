@@ -1,29 +1,28 @@
 import Link from 'next/link';
-import styles from './page.module.css';
+import styles from './page.module.scss';
 
-export default function SignIn(){
+export default function ResetEmailPage(){
     return(
         <div className={styles.SignInBlock}>
             <div className={styles.logo}>Articly</div>
             <div className={styles.welcomeText}>
-                <p className={styles.boldHello}>С возвращением!</p>
-                <p>Войдите в аккаунт, чтобы продолжить или зарегистрируйтесь</p>
+                <p className={styles.boldHello}>Восстановление пароля</p>
+                <p>На указанную почту придет ссылка для восстановления</p>
             </div>
             <div className={styles.inputField}>
                 <div className={styles.inputEmail}>
                     <label className={styles.label}>Почта:</label>
                     <input type="email" className={styles.emailInputBox} placeholder="email@example.com" id="email"/>
+                    <button type="button" className={styles.submitButton}>Отправить</button>
                 </div>
                 <div className={styles.inputPassword}>
-                    <label className={styles.label}>Пароль:</label>
+                    <label className={styles.label}>Код восстановления:</label>
                     <input type="password" className={styles.passwordInputBox} placeholder="********" id="password" />
                 </div>
-                <Link href="/passResetEmail" className={styles.resetPassText}>Забыли пароль?</Link>
             </div>
-            <Link href="" className={styles.signInButton}>Войти</Link>
+            <Link href="/passResetPass" className={styles.signInButton}>Продолжить</Link>
             <div className={styles.signUpBox}>
-                <span>Нет аккаунта?</span>
-                <Link href="/signUp" className={styles.signUpText}>Зарегистрироваться</Link>
+                <Link href="/signIn" className={styles.signUpText}>Войти в аккаунт</Link>
             </div>
         </div>
     )

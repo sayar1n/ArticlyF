@@ -1,0 +1,197 @@
+.signInBlock {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0 20px;
+}
+
+.formSection {
+    max-width: 680px;
+    min-height: 840px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.logo {
+    font-size: 42px;
+    letter-spacing: 5px;
+    color: #005244;
+    margin-bottom: 10px;
+}
+
+.welcomeText {
+    color: #535353;
+    font-size: 28px;
+    text-align: center;
+    margin: 0px 20px 40px 20px;
+}
+
+.inputField {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    font-size: 20px;
+}
+
+.inputEmail, .inputPassword, .inputNickname {
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    margin: 10px 0;
+}
+
+.emailInputBox, .passwordInputBox, .nicknameInputBox {
+    border-radius: 11px;
+    border: 1px solid #d1d1d1;
+    width: 605px;
+    height: 53px;
+    background-color: #d1d1d1;
+    text-indent: 15px;
+    margin: 5px;
+}
+
+.label {
+    font-size: 20px;
+    font-weight: 300;
+    margin-top: 15px;
+    margin-left: 8px;
+}
+
+.resetPassText {
+    margin-left: auto;
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #02B362;
+    text-decoration: none;
+}
+
+.signInButton {
+    display: block;
+    margin: 0 auto;
+    margin-top: 30px;
+    padding: 20px 50px;
+    font-size: 22px;
+    background-color: #02B362;
+    color: white;
+    border-radius: 15px;
+    border: none;
+}
+
+.signUpBox {
+    margin-top: 20px;
+    font-size: 20px;
+    text-align: center;
+    span {
+        color: #091219;
+    }
+
+    .signUpText {
+        margin-left: 5px;
+        color: #02B362;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .welcomeText {
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+
+    .inputEmail, .inputPassword, .inputNickname {
+        font-size: 18px;
+
+        .label {
+            font-size: 18px;
+        }
+    }
+
+    .emailInputBox, .passwordInputBox, .nicknameInputBox {
+        width: 505px;
+    }
+
+    .signInButton {
+        padding: 15px 40px;
+        font-size: 22px;
+    }
+
+    .signUpBox {
+        font-size: 18px;
+    }
+
+    .resetPassText{
+        font-size: 1rem;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    .welcomeText {
+        font-size: 18px;
+    }
+
+    .inputEmail, .inputPassword, .inputNickname {
+        font-size: 16px;
+
+        .label {
+            font-size: 16px;
+        }
+    }
+
+    .emailInputBox, .passwordInputBox, .nicknameInputBox {
+        width: 405px;
+    }
+
+    .signInButton {
+        padding: 15px 40px;
+        font-size: 20px;
+    }
+
+    .signUpBox {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 475px) {
+    .formSection {
+        max-width: 680px;
+        min-height: 840px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-radius: none;
+        box-shadow: none;
+    }
+
+    .logo {
+        font-size: 32px;
+    }
+
+    .welcomeText {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .emailInputBox, .passwordInputBox, .nicknameInputBox {
+        width: 280px;
+        height: 42px;
+    }
+
+    .signInButton {
+        padding: 15px 20px;
+        font-size: 16px;
+    }
+
+    .signUpBox {
+        font-size: 16px;
+    }
+
+    .resetPassText{
+        font-size: 0.8rem;
+    }
+}
