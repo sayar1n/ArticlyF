@@ -43,8 +43,9 @@
     }
 }
 
-.formZone {
-    margin-bottom: 150px;
+.inputField {
+    margin-top: 20px;
+    margin-bottom: 130px;
 }
 
 .inputEmail,
@@ -73,15 +74,14 @@
     border: 2px solid #dedede;
     background-color: #dedede;
     text-indent: 15px;
-    text-align: left;
-    font-family: "Ubuntu", sans-serif;
-    font-size: 20px;
-    font-weight: 500;
     box-sizing: border-box;
     position: relative;
 
     &::placeholder {
-        font-weight: 500;
+        font-family: "Ubuntu", sans-serif;
+        font-size: 18px;
+        font-weight: 400;
+        text-align: left;
         color: #B7B7B7(9, 18, 25, 0.5);
     }
 
@@ -94,18 +94,21 @@
 .resetPassContainer {
     display: flex;
     justify-content: right;
-
-    .resetPassText {
-        font-family: "Nunito Sans", sans-serif;
-        font-size: 20px;
-        font-weight: 700;
-        margin-left: auto;
-        margin-right: 10px;
-        color: #02b362;
-        text-decoration: none;
-    }
 }
 
+.resetPassText {
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-left: auto;
+    margin-right: 10px;
+    color: #02b362;
+    text-decoration: none;
+}
+
+.buttonContainer {
+    margin-bottom: auto;
+}
 
 .signInButton {
     width: 330px;
@@ -122,10 +125,6 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
-}
-
-.buttonContainer {
-    margin-bottom: auto;
 }
 
 .signUpBox {
@@ -153,7 +152,7 @@
     }
 
     .formZone {
-        margin-bottom: 75px;
+        margin-bottom: 164px;
     }
 
     .inputEmail, .inputPassword {
@@ -220,6 +219,10 @@
         }
     }
 
+    .resetPassText {
+        font-size: 18px;
+    }
+
     .signInButton {
         width: 270px;
         height: 68px;
@@ -270,6 +273,10 @@
     .emailInputBox, .passwordInputBox {
         width: 300px;
         height: 42px;
+    }
+
+    .resetPassText {
+        font-size: 16px;
     }
 
     .signInButton {

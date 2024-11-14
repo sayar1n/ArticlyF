@@ -61,7 +61,7 @@ export default function SignUp() {
 
         {/* Основная форма регистрации */}
         <form onSubmit={handleRegister}>
-          <div className={styles.formZone}>
+          <div className={styles.inputField}>
             {/* Поле ввода nickname */}
             <div className={styles.inputNickname}>
               <label className={styles.label}>Никнейм:</label>
@@ -103,10 +103,12 @@ export default function SignUp() {
 
             {error && <p style={{ color: "red" }}>{error}</p>}
           </div>
-          {/* Кнопка отправки формы */}
-          <button type="submit" className={styles.signInButton}>
-            Зарегистрироваться
-          </button>
+          <div className={styles.buttonContainer}>
+            {/* Кнопка отправки формы */}
+            <button type="submit" className={styles.signInButton}>
+              Зарегистрироваться
+            </button>
+          </div>
         </form>
 
         {/* Ссылка на авторизацию */}

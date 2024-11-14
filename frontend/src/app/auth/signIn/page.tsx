@@ -62,9 +62,7 @@ export default function SignIn() {
         </div>
         {/* Форма входа */}
         <form onSubmit={handleSignIn}>
-          <div className={styles.formZone}>
-            {/* Поле ввода Никнейма */}
-            <div className={styles.inputField}>
+          <div className={styles.inputField}>
               {/* Поле ввода Email */}
               <div className={styles.inputEmail}>
                 <label className={styles.label}>Почта:</label>
@@ -84,7 +82,7 @@ export default function SignIn() {
                 <input
                   type="password"
                   className={styles.passwordInputBox}
-                  placeholder="********"
+                  placeholder="**********"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
@@ -101,7 +99,6 @@ export default function SignIn() {
 
             {/* Отображение ошибки */}
             {error && <p style={{ color: "red" }}>{error}</p>}
-          </div>
           <div className={styles.buttonContainer}>
             {/* Кнопка отправки формы */}
             <button type="submit" className={styles.signInButton}>

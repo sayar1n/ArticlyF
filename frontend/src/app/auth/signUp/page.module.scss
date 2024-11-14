@@ -20,7 +20,7 @@
 .titleBlock {
     text-align: center;
     margin-top: 60px;
-    margin-bottom: 50px;
+    margin-bottom: 52px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -43,8 +43,8 @@
     }
 }
 
-.formZone {
-    margin-bottom: 89px;
+.inputField {
+    margin-bottom: 87px;
 }
 
 .inputNickname, .inputEmail, .inputPassword {
@@ -68,35 +68,39 @@
     width: 584px;
     height: 53px;
     border-radius: 11px;
-    border: 2px solid #DEDEDE;
-    background-color: #DEDEDE;        
+    border: 2px solid #dedede;
+    background-color: #dedede;
     text-indent: 15px;
-    text-align: left;
-    font-family: 'Ubuntu', sans-serif;
-    font-size: 20px;
-    font-weight: 500;
     box-sizing: border-box;
     position: relative;
 
     &::placeholder {
-        font-weight: 500;
+        font-family: "Ubuntu", sans-serif;
+        font-size: 18px;
+        font-weight: 400;
+        text-align: left;
         color: #B7B7B7(9, 18, 25, 0.5);
     }
 
     &:focus {
         outline: none;
-        border: 2px solid #02B362;
+        border: 2px solid #02b362;
     }
+}
+
+.buttonContainer {
+    margin-bottom: auto;
 }
 
 .signInButton {
     width: 330px;
     height: 82px;
     margin-bottom: 20px;
-    font-family: 'Nunito Sans', sans-serif;
+    margin-top: 65px;
+    font-family: "Nunito Sans", sans-serif;
     font-size: 28px;
     font-weight: 600;
-    background-color: #02B362;
+    background-color: #02b362;
     color: #ffffff;
     border: none;
     border-radius: 15px;
@@ -130,7 +134,7 @@
     }
 
     .formZone {
-        margin-bottom: 75px;
+        margin-bottom: 110px;
     }
 
     .inputNickname, .inputEmail, .inputPassword {
