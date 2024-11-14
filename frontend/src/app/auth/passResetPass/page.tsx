@@ -21,7 +21,7 @@ export default function ResetPassPage(){
             </div>
             <Link href="/" className={styles.signInButton}>Изменить пароль</Link>
             <div className={styles.signUpBox}>
-                <Link href="/signIn" className={styles.signUpText}>Войти в аккаунт</Link>
+                <Link href="./signIn" className={styles.signUpText}>Войти в аккаунт</Link>
             </div>
         </div>
     )

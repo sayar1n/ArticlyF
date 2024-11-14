@@ -56,52 +56,53 @@ export default function SignUp() {
         {/* Блок загаловка регистрации */}
         <div className={styles.titleBlock}>
           <div className={styles.logo}>Articly</div>
-          <span>Зарегистрируйтесь, чтобы начать пользоваться приложением</span>
+          <span>Зарегистрируйтесь,<br />чтобы начать пользоваться приложением</span>
         </div>
 
         {/* Основная форма регистрации */}
         <form onSubmit={handleRegister}>
-          {/* Поле ввода nickname */}
-          <div className={styles.inputNickname}>
-            <label className={styles.label}>Никнейм:</label>
-            <input
-              type="text"
-              className={styles.nicknameInputBox}
-              placeholder="Ваш никнейм"
-              value={nickname}
-              onChange={(e) => setNickname(e.target.value)}
-              required
-            />
+          <div className={styles.formZone}>
+            {/* Поле ввода nickname */}
+            <div className={styles.inputNickname}>
+              <label className={styles.label}>Никнейм:</label>
+              <input
+                type="text"
+                className={styles.nicknameInputBox}
+                placeholder="Ваш никнейм"
+                value={nickname}
+                onChange={(e) => setNickname(e.target.value)}
+                required
+              />
+            </div>
+
+            {/* Поле ввода email */}
+            <div className={styles.inputEmail}>
+              <label className={styles.label}>Почта:</label>
+              <input
+                type="email"
+                className={styles.emailInputBox}
+                placeholder="email@example.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
+
+            {/* Поле ввода пароля */}
+            <div className={styles.inputPassword}>
+              <label className={styles.label}>Пароль:</label>
+              <input
+                type="password"
+                className={styles.passwordInputBox}
+                placeholder="**********"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
+
+            {error && <p style={{ color: "red" }}>{error}</p>}
           </div>
-
-          {/* Поле ввода email */}
-          <div className={styles.inputEmail}>
-            <label className={styles.label}>Почта:</label>
-            <input
-              type="email"
-              className={styles.emailInputBox}
-              placeholder="email@example.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </div>
-
-          {/* Поле ввода пароля */}
-          <div className={styles.inputPassword}>
-            <label className={styles.label}>Пароль:</label>
-            <input
-              type="password"
-              className={styles.passwordInputBox}
-              placeholder="********"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
-
-          {error && <p style={{ color: "red" }}>{error}</p>}
-
           {/* Кнопка отправки формы */}
           <button type="submit" className={styles.signInButton}>
             Зарегистрироваться

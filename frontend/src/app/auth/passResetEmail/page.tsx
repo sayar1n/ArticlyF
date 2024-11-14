@@ -20,9 +20,9 @@ export default function ResetEmailPage(){
                     <input type="password" className={styles.passwordInputBox} placeholder="********" id="password" />
                 </div>
             </div>
-            <Link href="/passResetPass" className={styles.signInButton}>Продолжить</Link>
+            <Link href="./passResetPass" className={styles.signInButton}>Продолжить</Link>
             <div className={styles.signUpBox}>
-                <Link href="/signIn" className={styles.signUpText}>Войти в аккаунт</Link>
+                <Link href="./signIn" className={styles.signUpText}>Войти в аккаунт</Link>
             </div>
         </div>
     )

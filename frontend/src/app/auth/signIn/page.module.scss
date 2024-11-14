@@ -3,195 +3,283 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    margin: 0 20px;
+    width: 100vw;
 }
 
 .formSection {
-    max-width: 680px;
-    min-height: 840px;
+    width: 650px;
+    height: 820px;
+    margin: 130px 635px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    border-radius: 10px;
+    border-radius: 15px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
-.logo {
-    font-size: 42px;
-    letter-spacing: 5px;
-    color: #005244;
-    margin-bottom: 10px;
-}
-
-.welcomeText {
-    color: #535353;
-    font-size: 28px;
+.titleBlock {
     text-align: center;
-    margin: 0px 20px 40px 20px;
-}
-
-.inputField {
+    margin-top: 60px;
+    margin-bottom: 50px;
     display: flex;
     flex-direction: column;
-    margin: 0 auto;
-    font-size: 20px;
+    align-items: center;
+
+    .logo {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 48px;
+        font-weight: 500;
+        color: #005244;
+        margin-bottom: 33px;
+        text-align: center;
+        letter-spacing: 0.3em;
+    }
+
+    span {
+        font-family: "Nunito Sans", sans-serif;
+        font-size: 28px;
+        color: #091219;
+        text-align: center;
+    }
 }
 
-.inputEmail, .inputPassword, .inputNickname {
+.formZone {
+    margin-bottom: 150px;
+}
+
+.inputEmail,
+.inputPassword {
     display: flex;
     flex-direction: column;
-    font-size: 20px;
-    margin: 10px 0;
+    width: 584px;
+    margin-bottom: 20px;
+
+    .label {
+        font-family: "Nunito Sans", sans-serif;
+        font-size: 20px;
+        font-weight: 500;
+        margin-bottom: 8px;
+        text-align: left;
+        margin-left: 8px;
+    }
 }
 
-.emailInputBox, .passwordInputBox, .nicknameInputBox {
-    border-radius: 11px;
-    border: 1px solid #d1d1d1;
-    width: 605px;
+.emailInputBox,
+.passwordInputBox {
+    display: flex;
+    width: 584px;
     height: 53px;
-    background-color: #d1d1d1;
+    border-radius: 11px;
+    border: 2px solid #dedede;
+    background-color: #dedede;
     text-indent: 15px;
-    margin: 5px;
-}
-
-.label {
+    text-align: left;
+    font-family: "Ubuntu", sans-serif;
     font-size: 20px;
-    font-weight: 300;
-    margin-top: 15px;
-    margin-left: 8px;
+    font-weight: 500;
+    box-sizing: border-box;
+    position: relative;
+
+    &::placeholder {
+        font-weight: 500;
+        color: #B7B7B7(9, 18, 25, 0.5);
+    }
+
+    &:focus {
+        outline: none;
+        border: 2px solid #02b362;
+    }
 }
 
-.resetPassText {
-    margin-left: auto;
-    margin-top: 10px;
-    font-weight: bold;
-    font-size: 1.2rem;
-    color: #02B362;
-    text-decoration: none;
+.resetPassContainer {
+    display: flex;
+    justify-content: right;
+
+    .resetPassText {
+        font-family: "Nunito Sans", sans-serif;
+        font-size: 20px;
+        font-weight: 700;
+        margin-left: auto;
+        margin-right: 10px;
+        color: #02b362;
+        text-decoration: none;
+    }
 }
+
 
 .signInButton {
-    display: block;
-    margin: 0 auto;
-    margin-top: 30px;
-    padding: 20px 50px;
-    font-size: 22px;
-    background-color: #02B362;
-    color: white;
-    border-radius: 15px;
+    width: 330px;
+    height: 82px;
+    margin-bottom: 20px;
+    margin-top: 65px;
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 28px;
+    font-weight: 600;
+    background-color: #02b362;
+    color: #ffffff;
     border: none;
+    border-radius: 15px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.buttonContainer {
+    margin-bottom: auto;
 }
 
 .signUpBox {
-    margin-top: 20px;
-    font-size: 20px;
+    margin-bottom: 39px;
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 24px;
+    font-weight: 500;
     text-align: center;
+
     span {
         color: #091219;
     }
 
     .signUpText {
         margin-left: 5px;
-        color: #02B362;
+        color: #02b362;
+        text-decoration: none;
+        font-weight: 500;
     }
 }
 
-@media screen and (max-width: 768px) {
-    .welcomeText {
-        font-size: 22px;
-        margin-bottom: 20px;
+@media screen and (max-width: 1760px) {
+    .formSection {
+        margin: 90px 445px;
     }
 
-    .inputEmail, .inputPassword, .inputNickname {
-        font-size: 18px;
+    .formZone {
+        margin-bottom: 75px;
+    }
+
+    .inputEmail, .inputPassword {
+        width: 586px;
+    }
+
+    .emailInputBox, .passwordInputBox {
+        width: 586px;
+        height: 46px;
+        font-size: 20px;
+
+        &::placeholder {
+            font-size: 16px;
+        }
+    }
+}
+
+@media screen and (max-width: 1480px) {
+    .formSection {
+        width: 100%;
+        height: 100vh;
+        margin: 0;
+        border-radius: 0;
+        box-shadow: none;
+        justify-content: center;
+    }
+
+    .titleBlock {
+        margin-top: 0;
+        margin-bottom: 35px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .logo {
+            font-size: 48px;
+            margin-bottom: 25px;
+        }
+    
+        span {
+            font-size: 28px;
+        }
+    }
+
+    .formZone {
+        margin-bottom: 75px;
+    }
+
+    .inputEmail, .inputPassword {
+        width: 486px;
 
         .label {
             font-size: 18px;
         }
     }
 
-    .emailInputBox, .passwordInputBox, .nicknameInputBox {
-        width: 505px;
-    }
+    .emailInputBox, .passwordInputBox {
+        width: 486px;
+        height: 46px;
+        font-size: 20px;
 
-    .signInButton {
-        padding: 15px 40px;
-        font-size: 22px;
-    }
-
-    .signUpBox {
-        font-size: 18px;
-    }
-
-    .resetPassText{
-        font-size: 1rem;
-    }
-}
-
-@media screen and (max-width: 620px) {
-    .welcomeText {
-        font-size: 18px;
-    }
-
-    .inputEmail, .inputPassword, .inputNickname {
-        font-size: 16px;
-
-        .label {
+        &::placeholder {
             font-size: 16px;
         }
     }
 
-    .emailInputBox, .passwordInputBox, .nicknameInputBox {
-        width: 405px;
-    }
-
     .signInButton {
-        padding: 15px 40px;
-        font-size: 20px;
+        width: 270px;
+        height: 68px;
+        margin-bottom: 20px;
+        font-size: 24px;
     }
 
     .signUpBox {
-        font-size: 16px;
+        font-size: 20px;
     }
 }
 
 @media screen and (max-width: 475px) {
     .formSection {
-        max-width: 680px;
-        min-height: 840px;
+        width: 100%;
+        height: 100vh;
+        margin: 0;
+        border-radius: 0;
+        box-shadow: none;
+        justify-content: center;
+    }
+
+    .titleBlock {
+        margin-top: 0;
+        margin-bottom: 35px;
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
-        border-radius: none;
-        box-shadow: none;
+
+        .logo {
+            font-size: 32px;
+            margin-bottom: 25px;
+        }
+    
+        span {
+            font-size: 20px;
+        }
     }
 
-    .logo {
-        font-size: 32px;
+    .formZone {
+        margin-bottom: 45px;
     }
 
-    .welcomeText {
-        font-size: 16px;
-        margin-bottom: 10px;
+    .inputEmail, .inputPassword {
+        width: 300px;
     }
 
-    .emailInputBox, .passwordInputBox, .nicknameInputBox {
-        width: 280px;
+    .emailInputBox, .passwordInputBox {
+        width: 300px;
         height: 42px;
     }
 
     .signInButton {
-        padding: 15px 20px;
-        font-size: 16px;
+        width: 200px;
+        height: 50px;
+        margin-bottom: 15px;
+        font-size: 18px;
     }
 
     .signUpBox {
-        font-size: 16px;
-    }
-
-    .resetPassText{
-        font-size: 0.8rem;
+        font-size: 18px;
     }
 }
