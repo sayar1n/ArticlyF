@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
-import { JetBrains_Mono } from 'next/font/google'
+import { JetBrains_Mono, Nunito_Sans } from 'next/font/google'
 import '@/styles/globals.scss'
 
-const jetBrainsMono = JetBrains_Mono({ subsets: ['latin'] })
+const nunitoSans = Nunito_Sans({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Next.js',
@@ -16,7 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={jetBrainsMono.className}>{children}</body>
+      <body className={nunitoSans.className}>{children}</body>
     </html>
   )
 }

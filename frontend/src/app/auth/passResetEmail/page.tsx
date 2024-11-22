@@ -15,7 +15,8 @@ export default function ResetEmailPage() {
     const handleResetPassword = (e: React.FormEvent) => {
         e.preventDefault();
     };
-
+    
+    {/* Кнопка отправки кода для восстановления пароля */}
     const handleSendCode = () => {
         // Логика отправки кода
     };
