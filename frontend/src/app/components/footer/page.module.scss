@@ -1,0 +1,46 @@
+.footer {
+    display: flex;
+    background-color: #005244;
+    width: 100%;
+    min-height: 200px;
+    padding: 2rem;
+}
+
+.leftSection {
+    flex: 1;
+    display: flex;
+    padding: 1rem;
+}
+
+.rightSection {
+    flex: 1;
+    padding: 1rem;
+}
+
+.logo {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.linksGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    a {
+        color: white;
+        text-decoration: none;
+        font-size: 0.9rem;
+        
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+}

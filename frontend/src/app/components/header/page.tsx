@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import styles from "./Header.module.scss";
+import styles from "./page.module.scss";
 import { AlignJustify, X } from "lucide-react";
 import React, { useState } from "react";
 
