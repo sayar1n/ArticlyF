@@ -1,3 +1,4 @@
+from datetime import datetime
 from uuid import UUID
 
 from fastapi import APIRouter, Depends, HTTPException
@@ -61,6 +62,7 @@ async def update_note(
     for field in obj_data:
         if field in update_data:
             setattr(note, field, update_data[field])
+    note.updated_at = datetime.now()
     db.add(note)
     db.commit()
     db.refresh(note)

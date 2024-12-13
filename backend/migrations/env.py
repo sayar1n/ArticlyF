@@ -8,6 +8,7 @@ from alembic import context
 from auth.models import User  # noqa
 from note.models import Note  # noqa
 from task.models import Task  # noqa
+from event.models import Event  # noqa
 from core.base_model import Base  # noqa
 
 from core.config import settings

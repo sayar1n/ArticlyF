@@ -1,30 +1,22 @@
 "use client";
 
+import { useState } from "react";
 import Link from 'next/link';
+import { useAuth } from '@/app/hooks/useAuth';
+import api from '@/app/utils/api';
+import { handleApiError } from '@/app/utils/errorHandler';
 import styles from './page.module.scss';
-import axios from "axios";
-import { useState } from "react"
-import { useRouter } from 'next/navigation';
 
 export default function SignIn() {
-  const [nickname, setNickname] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
-  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
+  const { login } = useAuth();
 
-
-  const api = axios.create({
-    baseURL: 'http://localhost:8061',
-    withCredentials: true,
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
-
-  // Фуникция для обработки входа в аккаунт
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
     setError(null);
 
     const formData = new URLSearchParams();
@@ -32,23 +24,19 @@ export default function SignIn() {
     formData.append('password', password);
 
     try {
-      const response = await api.post('/login', formData, {
+      const response = await api.post('/auth/login', formData, {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
       });
 
       if (response.status === 200) {
-        // Успешный вход, перенаправляем на главную страницу или панель управления
-        router.push('/dashboard');
+        login(response.data.access_token);
       }
     } catch (error: any) {
-      if (error.response && error.response.data && error.response.data.detail) {
-        setError(error.response.data.detail);
-      } else {
-        setError('Ошибка входа. Пожалуйста, проверьте ваши данные и попробуйте снова.');
-      }
-      console.error('Login error:', error);
+      setError(handleApiError(error));
+    } finally {
+      setIsLoading(false);
     }
   };
 

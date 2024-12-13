@@ -1,0 +1,601 @@
+.container {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+
+    h1 {
+        font-size: 24px;
+        margin-bottom: 30px;
+    }
+}
+
+.feedbackForm {
+    max-width: 100%;
+    padding: 0 20px;
+}
+
+.section {
+    margin-bottom: 24px;
+
+    h2 {
+        font-size: 16px;
+        font-weight: normal;
+        margin-bottom: 12px;
+    }
+}
+
+.inputWrapper {
+    position: relative;
+
+    input, textarea {
+        width: 100%;
+        padding: 8px 12px;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        background-color: #f5f5f5;
+        font-size: 14px;
+        resize: none;
+
+        &[readonly] {
+            background-color: #f5f5f5;
+            cursor: default;
+        }
+    }
+
+    textarea {
+        min-height: 80px;
+    }
+}
+
+.chatActions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 16px;
+}
+
+.chatButton {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    &:hover {
+        background-color: #45a049;
+    }
+}
+
+// Модальное окно чата
+.chatModal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.chatContent {
+    width: 100%;
+    max-width: 500px;
+    height: 600px;
+    background-color: white;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.chatHeader {
+    padding: 16px;
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e0e0e0;
+
+    h3 {
+        margin: 0;
+        font-size: 18px;
+        font-weight: normal;
+    }
+
+    .closeButton {
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        color: #666;
+        padding: 0 8px;
+
+        &:hover {
+            color: #333;
+        }
+    }
+}
+
+.chatMessages {
+    flex: 1;
+    padding: 16px;
+    overflow-y: auto;
+    background-color: #E8F5E9;
+}
+
+.message {
+    max-width: 80%;
+    padding: 8px 12px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    font-size: 14px;
+    line-height: 1.4;
+
+    &.userMessage {
+        background-color: #4CAF50;
+        color: white;
+        margin-left: auto;
+        border-bottom-right-radius: 2px;
+    }
+
+    &.supportMessage {
+        background-color: white;
+        color: #333;
+        margin-right: auto;
+        border-bottom-left-radius: 2px;
+    }
+}
+
+.chatInputForm {
+    padding: 16px;
+    display: flex;
+    gap: 8px;
+    background-color: white;
+    border-top: 1px solid #e0e0e0;
+
+    input {
+        flex: 1;
+        padding: 8px 12px;
+        border: 1px solid #e0e0e0;
+        border-radius: 4px;
+        font-size: 14px;
+
+        &:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
+    }
+
+    button {
+        background: none;
+        border: none;
+        font-size: 20px;
+        cursor: pointer;
+        padding: 0 8px;
+        color: #666;
+
+        &:hover {
+            color: #333;
+        }
+    }
+}
+
+// Адаптивность
+@media (max-width: 768px) {
+    .container {
+        padding: 16px;
+        padding-bottom: 200px;
+    }
+
+    .feedbackForm {
+        padding: 0;
+    }
+
+    .section {
+        margin-bottom: 20px;
+    }
+
+    .inputWrapper {
+        input, textarea {
+            padding: 8px 10px;
+            font-size: 14px;
+        }
+
+        textarea {
+            min-height: 60px;
+        }
+    }
+
+    .buttonContainer {
+        margin-top: 20px;
+        padding: 0;
+    }
+
+    .submitButton {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    .chatButton {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+
+    .chatContent {
+        margin: 16px;
+        height: calc(100vh - 32px);
+    }
+
+    .bottomPanel {
+        flex-direction: column;
+        padding: 12px;
+        gap: 8px;
+        background-color: #fff;
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .bottomButton {
+        width: 100%;
+        justify-content: center;
+        padding: 12px 16px;
+        font-size: 14px;
+    }
+
+    .faqModal, .chatModal {
+        align-items: flex-end;
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    .faqContent, .chatContent {
+        height: 90vh;
+        margin: 0;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        border-top-left-radius: 16px;
+        border-top-right-radius: 16px;
+    }
+
+    .faqHeader, .chatHeader {
+        padding: 16px;
+        position: sticky;
+        top: 0;
+        background-color: white;
+        z-index: 10;
+    }
+
+    .faqList, .chatMessages {
+        padding: 12px;
+        padding-bottom: 80px;
+    }
+
+    .searchBar {
+        max-width: 100%;
+    }
+
+    .chatInputForm {
+        position: sticky;
+        bottom: 0;
+        background-color: white;
+        padding: 12px;
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .faqList, .chatMessages {
+        -webkit-overflow-scrolling: touch;
+        overflow-y: auto;
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+
+    .faqItem {
+        margin-bottom: 16px;
+    }
+
+    .question {
+        font-size: 15px;
+        padding: 10px 14px;
+    }
+
+    .answer {
+        font-size: 14px;
+        padding: 12px;
+    }
+
+    .message {
+        max-width: 85%;
+        font-size: 14px;
+        padding: 10px 14px;
+    }
+}
+
+.buttonContainer {
+    padding: 0;
+    margin-top: 24px;
+}
+
+.submitButton {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    &:hover {
+        background-color: #45a049;
+    }
+
+    &:disabled {
+        background-color: #cccccc;
+        cursor: not-allowed;
+    }
+}
+
+.bottomPanel {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    padding: 16px;
+    background-color: #fff;
+    border-top: 1px solid #e0e0e0;
+    z-index: 100;
+}
+
+.bottomButton {
+    padding: 10px 20px;
+    background-color: #E8F5E9;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    &:hover {
+        background-color: #C8E6C9;
+    }
+
+    &:last-child {
+        background-color: #4CAF50;
+        color: white;
+
+        &:hover {
+            background-color: #45a049;
+        }
+    }
+}
+
+.email {
+    color: #4CAF50;
+    text-decoration: underline;
+}
+
+// Обновляем стили модальных окон
+.faqModal, .chatModal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.faqContent {
+    width: 100%;
+    max-width: 600px;
+    height: 80vh;
+    background-color: #E8F5E9;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative; // Добавляем для позиционирования header
+}
+
+.faqHeader {
+    padding: 16px;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    border-bottom: 1px solid #e0e0e0;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.searchBar {
+    flex: 1;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    background: #f5f5f5;
+    padding: 8px 12px;
+    border-radius: 8px;
+}
+
+.searchInput {
+    flex: 1;
+    border: none;
+    background: none;
+    font-size: 14px;
+    outline: none;
+
+    &::placeholder {
+        color: #666;
+    }
+}
+
+.filterButton {
+    background: none;
+    border: none;
+    font-size: 16px;
+    color: #666;
+    cursor: pointer;
+    padding: 4px;
+
+    &:hover {
+        color: #333;
+    }
+}
+
+.faqList {
+    flex: 1;
+    padding: 16px;
+    overflow-y: auto;
+}
+
+.faqItem {
+    background: white;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 12px;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.question {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 8px;
+    padding: 8px 12px;
+    background: #4CAF50;
+    color: white;
+    border-radius: 8px;
+}
+
+.answer {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.5;
+    padding: 8px 12px;
+    background: #f5f5f5;
+    border-radius: 8px;
+}
+
+// Медиа-запросы для мобильных устройств
+@media (max-width: 768px) {
+    .container {
+        padding: 16px;
+        padding-bottom: 200px;
+    }
+
+    .faqModal, .chatModal {
+        align-items: flex-end;
+    }
+
+    .faqContent, .chatContent {
+        height: 85vh;
+        margin: 0;
+        border-radius: 16px 16px 0 0;
+    }
+
+    .faqHeader {
+        border-radius: 16px 16px 0 0;
+    }
+
+    .searchBar {
+        width: 100%;
+        position: relative;
+        z-index: 11;
+    }
+
+    .searchInput {
+        width: 100%;
+    }
+
+    .faqList {
+        padding: 16px;
+        padding-bottom: 100px; // Увеличиваем отступ снизу
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .bottomPanel {
+        flex-direction: column;
+        padding: 12px;
+        gap: 8px;
+        background-color: #fff;
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .bottomButton {
+        width: 100%;
+        justify-content: center;
+        padding: 12px 16px;
+        font-size: 14px;
+    }
+
+    // Фиксим скролл на iOS
+    .faqList, .chatMessages {
+        -webkit-overflow-scrolling: touch;
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+}
+
+// Стили для ландшафтной ориентации
+@media (max-width: 896px) and (orientation: landscape) {
+    .faqContent, .chatContent {
+        height: 100vh;
+        max-height: 100vh;
+    }
+
+    .bottomPanel {
+        flex-direction: row;
+        padding: 8px 16px;
+    }
+
+    .bottomButton {
+        flex: 1;
+    }
+}
+
+.searchIcon {
+    color: #666;
+    font-size: 14px;
+}
+
+.closeButton {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #666;
+    padding: 4px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: all 0.2s;
+
+    &:hover {
+        background-color: #f5f5f5;
+        color: #333;
+    }
+}

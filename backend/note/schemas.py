@@ -12,7 +12,7 @@ class NoteSchema(BaseModel):
     title: str
     description: str
     created_at: datetime
-    updated_at: datetime
+    updated_at: datetime | None = None
 
 
 class CreateNoteRequestSchema(BaseModel):

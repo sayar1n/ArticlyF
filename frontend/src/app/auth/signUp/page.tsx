@@ -24,14 +24,14 @@ export default function SignUp() {
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await api.post("/register", {
+      const response = await api.post("/auth/register", {
         nickname,
         email,
         password,
       });
 
       if (response.status === 200) {
-        router.push("/signIn");
+        router.push("/auth/signIn");
       }
     } catch (error: any) {
       // Обработка ошибок API

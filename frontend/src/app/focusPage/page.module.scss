@@ -1,0 +1,363 @@
+// Variables
+$primary-green: #00B86B;
+$white: #FFFFFF;
+$black: #000000;
+$font-family: 'Nunito Sans', sans-serif;
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    position: relative;
+}
+
+.catImage {
+    margin-top: 123px;
+    width: 622px;
+    height: 322px;
+    border-radius: 60px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.timerContainer {
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 45px;
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+
+    .controlButton {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        border: none;
+        background-color: transparent;
+        color: $black;
+        font-size: 2.5rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.2s;
+        padding: 0;
+        position: relative;
+        line-height: 0;
+
+        span {
+            position: relative;
+            top: -2px;
+        }
+
+        &:first-child {
+            margin-right: 103px;
+        }
+
+        &:last-child {
+            margin-left: 103px;
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: transparent;
+            transition: background-color 0.2s;
+        }
+
+        &:hover::after {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+    }
+}
+
+.timeDisplay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 150px;
+    font-family: $font-family;
+    font-size: 150px;
+    color: $black;
+    line-height: 150px;
+    min-width: 600px;
+    margin: 0 20px;
+
+    span {
+        display: inline-block;
+        height: 150px;
+        line-height: 150px;
+        text-align: center;
+
+        &.separator {
+            margin: 0 51px;
+        }
+    }
+}
+
+.buttonContainer {
+    display: flex;
+    gap: 103px;
+    margin-top: 45px;
+    justify-content: center;
+    width: 100%;
+}
+
+.actionButton {
+    width: 151px;
+    height: 151px;
+    border-radius: 50%;
+    border: none;
+    background-color: $primary-green;
+    color: $white;
+    font-family: $font-family;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    &:hover {
+        background-color: darken($primary-green, 5%);
+    }
+}
+
+.shopContainer {
+    position: absolute;
+    top: 25px;
+    right: 35px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.headerRow {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 2px;
+    justify-content: center;
+}
+
+.shopHeader, .coinsHeader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    span {
+        font-family: $font-family;
+        font-size: 16px;
+        margin-bottom: 2px;
+    }
+}
+
+.headerIcon {
+    width: 29px;
+    height: 29px;
+}
+
+.coinsBalance {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.coinIcon {
+    width: 25px;
+    height: 25px;
+}
+
+.recentContainer {
+    width: 225px;
+    height: 225px;
+    background-color: rgba(238, 238, 238, 0.5);
+    border-radius: 10px;
+    margin-top: 20px;
+    padding: 0;
+    transition: height 0.3s ease;
+    overflow: hidden;
+
+    &.collapsed {
+        height: 40px;
+        
+        .recentList {
+            opacity: 0;
+        }
+    }
+}
+
+.recentHeader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+    position: relative;
+    background-color: rgba(219, 219, 219, 0.5);
+    height: 40px;
+    width: 100%;
+    border-radius: 10px 10px 0 0;
+
+    span {
+        font-family: $font-family;
+        font-size: 16px;
+        font-weight: 600;
+    }
+}
+
+.toggleButton {
+    position: absolute;
+    left: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    padding: 0;
+    color: $black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.recentList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 3px 30px;
+    opacity: 1;
+    transition: opacity 0.2s ease;
+}
+
+.recentItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
+    span {
+        font-family: $font-family;
+        font-size: 14px;
+        color: $black;
+    }
+}
+
+.recentReward {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    span {
+        font-family: $font-family;
+        font-size: 14px;
+        color: $black;
+    }
+}
+
+.smallCoinIcon {
+    width: 16px;
+    height: 16px;
+}
+
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modalContent {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    position: relative;
+    width: 500px;
+    
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        font-family: $font-family;
+    }
+}
+
+.closeButton {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: $black;
+}
+
+.shopItems {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.shopItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.shopItemImage {
+    width: 120px;
+    height: 120px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.buyButton {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 15px;
+    border: none;
+    border-radius: 15px;
+    background-color: $primary-green;
+    color: white;
+    cursor: pointer;
+    font-family: $font-family;
+    
+    &:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+    }
+    
+    &:not(:disabled):hover {
+        background-color: darken($primary-green, 5%);
+    }
+}
+
+.resetButton {
+    display: block;
+    margin: 20px auto 0;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 15px;
+    background-color: #f0f0f0;
+    color: $black;
+    font-family: $font-family;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    &:hover {
+        background-color: darken(#f0f0f0, 5%);
+    }
+}

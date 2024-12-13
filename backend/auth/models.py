@@ -14,9 +14,9 @@ class User(Base):
     nickname: Mapped[str] = mapped_column(String)
     email: Mapped[str] = mapped_column(String)
     password: Mapped[str] = mapped_column(String)
-    logo: Mapped[str] = mapped_column(String)
+    logo: Mapped[str | None] = mapped_column(String, nullable=True)
     last_login_date: Mapped[list[datetime]] = mapped_column(ARRAY(DateTime),
                                                             default=lambda: [datetime.now()], nullable=False)
     tasks: Mapped[list[str]] = mapped_column(type_=ARRAY(String), nullable=True)
     notes: Mapped[list[str]] = mapped_column(type_=ARRAY(String), nullable=True)
-
+    events: Mapped[list[str]] = mapped_column(type_=ARRAY(String), nullable=True)

@@ -1,4 +1,5 @@
 import uuid
+from datetime import datetime
 
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import scoped_session
@@ -11,6 +12,7 @@ from auth.security import manager, limiter  # noqa
 from core.database import get_session  # noqa
 from task.models import Task  # noqa
 from task.schemas import TaskSchema, CreateTaskRequestSchema, CreateTaskResponseSchema, UpdateTaskRequestSchema, UpdateTaskResponseSchema  # noqa
+from auth.models import User
 
 
 router = APIRouter()
@@ -63,6 +65,7 @@ async def update_task(
     for field in obj_data:
         if field in update_data:
             setattr(task, field, update_data[field])
+    task.updated_at = datetime.now()
     db.add(task)
     db.commit()
     db.refresh(task)
@@ -131,3 +134,7 @@ async def delete_task(
         )
     return {"id": task_id}
 
+
+@router.get("/tasks")
+def get_tasks(user: User = Depends(manager)):
+    return user.tasks

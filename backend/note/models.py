@@ -14,4 +14,4 @@ class Note(Base):
     title: Mapped[str] = mapped_column(String)
     description: Mapped[str] = mapped_column(String)
     created_at: Mapped[datetime] = mapped_column(DateTime, default=lambda: datetime.now(), nullable=False)
-    updated_at: Mapped[datetime] = mapped_column(DateTime, default=lambda: datetime.now(), nullable=False)
+    updated_at: Mapped[datetime] = mapped_column(DateTime, nullable=True)

@@ -1,0 +1,184 @@
+.container {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+
+    h1 {
+        font-size: 24px;
+        margin-bottom: 30px;
+    }
+}
+
+.section {
+    margin-bottom: 30px;
+
+    h2 {
+        font-size: 16px;
+        font-weight: normal;
+        margin-bottom: 20px;
+    }
+}
+
+.optionsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 16px;
+}
+
+.schemesGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+// Общие стили для опций
+.themeOption,
+.colorOption,
+.schemeOption {
+    position: relative;
+    display: block;
+    cursor: pointer;
+
+    input {
+        position: absolute;
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    .optionContent,
+    .schemeContent {
+        display: flex;
+        align-items: center;
+        padding: 12px;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        background-color: #f5f5f5;
+        transition: all 0.2s;
+    }
+
+    &.selected .optionContent,
+    &.selected .schemeContent {
+        border-color: #4CAF50;
+        background-color: #E8F5E9;
+    }
+
+    .optionName,
+    .schemeName {
+        font-size: 14px;
+    }
+}
+
+// Стили для цветовых схем
+.schemeOption {
+    .schemeContent {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .colorBoxes {
+        display: flex;
+        gap: 8px;
+        width: 100%;
+    }
+
+    .colorBox {
+        flex: 1;
+        height: 24px;
+        border-radius: 4px;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+}
+
+// Специфичные стили для цветовых опций
+.colorOption {
+    .colorPreview {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        margin-right: 12px;
+        border: 1px solid #e0e0e0;
+
+        &.default { background-color: #4CAF50; }
+        &.blue { background-color: #2196F3; }
+        &.green { background-color: #4CAF50; }
+        &.purple { background-color: #9C27B0; }
+    }
+}
+
+// Стили для контрола размера шрифта
+.fontSizeControl {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+
+    input[type="range"] {
+        flex: 1;
+        height: 4px;
+        background: #e0e0e0;
+        border-radius: 2px;
+        appearance: none;
+
+        &::-webkit-slider-thumb {
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            background: #4CAF50;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+    }
+
+    .fontSizeValue {
+        min-width: 30px;
+        text-align: right;
+        font-size: 14px;
+    }
+}
+
+.fontSizePreview {
+    font-size: 16px;
+    color: #666;
+    margin-top: 8px;
+}
+
+// Стили для кнопки сохранения
+.submit-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.2s;
+
+    &:hover {
+        background-color: #45a049;
+    }
+
+    &:disabled {
+        background-color: #cccccc;
+        cursor: not-allowed;
+    }
+}
+
+// Адаптивность
+@media (max-width: 768px) {
+    .container {
+        padding: 16px;
+    }
+
+    .optionsGrid,
+    .schemesGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .section {
+        margin-bottom: 24px;
+    }
+}

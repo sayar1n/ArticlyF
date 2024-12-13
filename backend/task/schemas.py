@@ -12,7 +12,7 @@ class TaskSchema(BaseModel):
     phase: str
     date_of_completion: datetime
     created_at: datetime
-    updated_at: datetime
+    updated_at: datetime | None = None
 
 
 class CreateTaskRequestSchema(BaseModel):

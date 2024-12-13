@@ -18,6 +18,6 @@ class Task(Base):
     phase: Mapped[str] = mapped_column(String)
     date_of_completion: Mapped[datetime] = mapped_column(DateTime)
     created_at: Mapped[datetime] = mapped_column(DateTime, default=lambda: datetime.now(), nullable=False)
-    updated_at: Mapped[datetime] = mapped_column(DateTime, default=lambda: datetime.now(), nullable=False)
+    updated_at: Mapped[datetime] = mapped_column(DateTime, nullable=True)
 
 
