@@ -1,147 +1,436 @@
 .modalCalendar {
     width: 558px;
-    height: 784px;
+    height: 584px;
     background-color: #ffffff;
     border-radius: 11px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    position: relative;
 }
 
-.emojiInputContainer {
+.modalContent {
+    padding: 30px;
+    height: 100%;
+}
+
+.header {
     display: flex;
     align-items: center;
     gap: 8px;
-    position: relative;
-    width: 100%;
-    
+    margin-bottom: 10px;
+}
 
-    .emojiButton {
+.emojiButton {
     background: none;
     border: none;
-    font-size: 20px;
+    font-size: 24px;
     cursor: pointer;
-    padding: 4px;
-    border-radius: 4px;
+    color: #AAAAAA;
+    margin-left: 8px;
+}
+
+.titleInput {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.dateContainer {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.date {
+    background: #D9D9D9;
+    padding: 4px 8px;
+    border: none;
+    border-radius: 7px;
+    font-size: 14px;
+    width: 60px;
+    text-align: center;
+    
+    &:focus {
+        outline: none;
+    }
+}
+
+.datePickerHidden {
+    position: absolute;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    padding: 0;
+    margin: 0;
+    border: none;
+}
+
+.calendarButton {
+    position: absolute;
+    right: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.5;
     
     &:hover {
-        background-color: #f0f0f0;
+        opacity: 1;
+    }
+}
+
+.divider {
+    height: 1px;
+    background-color: #E5E5E5;
+    margin: 10px 0 15px;
+}
+
+.timeSection, .themeSection, .checkboxSection, .descriptionSection, .locationSection {
+    margin: 15px 0;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.timeInputs {
+    display: flex;
+    gap: 4px;
+}
+
+.timeInput {
+    width: 80px;
+    padding: 6px 8px;
+    background: #F3F3F3;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #333333;
+    text-align: center;
+    cursor: pointer;
+    
+    &:focus {
+        outline: none;
+        background: #EBEBEB;
+    }
+}
+
+.timeLabel {
+    color: #666666;
+    font-size: 14px;
+    width: 50px;
+}
+
+.tagSection {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+    position: relative;
+}
+
+.tagLabel {
+    color: #666666;
+    font-size: 14px;
+    min-width: 35px;
+    flex-shrink: 0;
+}
+
+.addTagButton {
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    min-height: 20px;
+    border: none;
+    border-radius: 50%;
+    background: transparent;
+    color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 20px;
+    padding: 0;
+    line-height: 1;
+
+    &:hover {
+        background: rgba(0, 0, 0, 0.1);
+    }
+    
+    &:active {
+        background: rgba(0, 0, 0, 0.2);
+    }
+}
+
+.themeLabel {
+    color: #666666;
+    font-size: 14px;
+    width: 50px;
+}
+
+.themeInput {
+    padding: 8px;
+    background: #F5F5F5;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.checkbox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    user-select: none;
+    color: #666666;
+    font-size: 14px;
+
+    input[type="checkbox"] {
+        appearance: none;
+        -webkit-appearance: none;
+        width: 18px;
+        height: 18px;
+        border: 2px solid #E5E5E5;
+        border-radius: 4px;
+        outline: none;
+        cursor: pointer;
+        position: relative;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:checked {
+            background-color: #00BA34;
+            border-color: #00BA34;
+
+            &::after {
+                content: '';
+                position: absolute;
+                width: 5px;
+                height: 10px;
+                border: solid white;
+                border-width: 0 2px 2px 0;
+                transform: rotate(45deg);
+                margin-bottom: 2px;
+            }
+        }
+
+        &:hover {
+            border-color: #00BA34;
         }
     }
 }
 
-.emojiPicker {
+.checkboxSection {
+    margin: 15px 0;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.descriptionInput {
+    width: 100%;
+    height: 120px;
+    padding: 12px;
+    border: 1px solid #E5E5E5;
+    border-radius: 7px;
+    resize: none;
+}
+
+.locationInput {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #E5E5E5;
+    border-radius: 7px;
+}
+
+.createButton {
+    width: calc(100% - 60px);
+    padding: 12px;
+    background: #00BA34;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    font-weight: 600;
     position: absolute;
-    top: 100%;
-    left: 0;
+    bottom: 35px;
+    left: 30px;
+}
+
+.emojiPicker, .themePicker {
+    position: absolute;
     background: white;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     padding: 8px;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 4px;
     z-index: 1000;
 }
 
-.emojiButton, .emojiOption {
-    color: #AAAAAA;
+.emojiPicker {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 4px;
 }
 
-.emojiOption {
-    background: none;
-    border: none;
-    font-size: 18px;
-    padding: 6px;
+.themePicker {
+    width: 200px;
+}
+
+.themeOption {
+    padding: 8px;
     cursor: pointer;
-    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     
     &:hover {
-        background-color: #f0f0f0;
+        background: #F5F5F5;
+        
+        .removeThemeButton {
+            opacity: 1;
+        }
     }
 }
 
-.inputField {
+.removeThemeButton {
+    background: none;
+    border: none;
+    color: #999;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 0;
+    opacity: 0;
+    transition: opacity 0.2s;
+    
+    &:hover {
+        color: #666;
+    }
+}
+
+.addThemeOption {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px;
+    border-top: 1px solid #E5E5E5;
+    margin-top: 4px;
+}
+
+.addThemeInput {
     flex: 1;
-    width: 100%;
     border: none;
     outline: none;
-    padding: 8px 0;
-    font-size: 16px;
-    background: transparent;
-    
+    font-size: 14px;
+    padding: 4px;
+    background: #F5F5F5;
+    border-radius: 4px;
+
     &::placeholder {
         color: #999;
     }
 }
 
-.datePickerContainer {
-    position: relative;
-}
-
-.dateInput {
-    width: 68px;
-    height: 24px;
-    background: #D9D9D9;
+.addThemeButton {
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    min-height: 20px;
     border: none;
-    border-radius: 7px;
+    border-radius: 50%;
+    background: transparent;
+    color: #000;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 14px;
     cursor: pointer;
-    user-select: none;
+    font-size: 20px;
+    padding: 0;
+    line-height: 1;
+
+    &:hover {
+        background: rgba(0, 0, 0, 0.1);
+    }
+    
+    &:active {
+        background: rgba(0, 0, 0, 0.2);
+    }
 }
 
-.datePicker {
+.selectedTags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    min-width: 32px;
+}
+
+.tag {
+    display: flex;
+    align-items: center;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 14px;
+    color: white;
+    gap: 4px;
+}
+
+.removeTag {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 0 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tagPicker {
     position: absolute;
-    top: 100%;
+    top: calc(100% + 5px);
     right: 0;
-    margin-top: 4px;
     background: white;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     padding: 12px;
     z-index: 1000;
-    width: 220px;
+    width: 180px;
 }
 
-.weekDays {
+.colorPicker {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 2px;
-    margin-bottom: 8px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
 }
 
-.weekDay {
-    font-size: 12px;
-    color: #666;
-    text-align: center;
-    padding: 4px;
-}
-
-.daysGrid {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 2px;
-}
-
-.dayItem {
-    height: 28px;
+.colorOption {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 12px;
-    cursor: pointer;
-    border-radius: 4px;
+    background: #F5F5F5;
     
     &:hover {
-        background: #f0f0f0;
+        transform: scale(1.1);
     }
 }
 
-.emptyDay {
-    cursor: default;
-    
-    &:hover {
-        background: none;
-    }
+.noTagIcon {
+    color: #999;
+    font-size: 14px;
+}
+
+.addTagConfirm {
+    display: none;
 }
