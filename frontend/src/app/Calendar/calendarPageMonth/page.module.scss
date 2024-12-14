@@ -1,14 +1,15 @@
 .container {
     display: flex;
-    width: 100%;
+    width: calc(100% - 210px);
     height: 100vh;
     position: relative;
+    margin-left: 210px;
 }
 
 .topPanel {
     position: fixed;
     top: 0;
-    left: 0;
+    left: 210px;
     right: 0;
     height: 85px;
     display: flex;
@@ -119,7 +120,6 @@
 
 .mainContent {
     margin-top: 85px;
-    margin-left: 0;
     padding: 20px;
     width: 100%;
 }
@@ -420,6 +420,33 @@
     
     .dayNumber {
         color: #999;
+    }
+}
+
+.createEventContainer {
+    margin-left: auto;
+    margin-right: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+.createEventButton {
+    padding: 8px 16px;
+    background: #00BA34;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    
+    &:hover {
+        background: #00A52E;
+        transform: scale(1.02);
+    }
+    
+    &:active {
+        transform: scale(0.98);
     }
 }
 

@@ -6,13 +6,16 @@ import SidebarMini from '../../components/SidebarMini/page';
 import CalendarLittle from '../../components/CalendarLittle/page';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import ModalCalendar from '../../components/modalCalendar/page';
+import SidebarFull from '../../components/SidebarFull/page';
+import MyEventsModal from '../../components/MyEventsModal/page';
 
 type Folder = {
     id: number;
     name: string;
 };
 
-export default function CalendarPageDay() {
+export default function CalendarPageMonth() {
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [folders, setFolders] = useState<Folder[]>([
         { id: 1, name: 'Все события' },
@@ -22,6 +25,8 @@ export default function CalendarPageDay() {
     const [activeFilter, setActiveFilter] = useState<number>(1);
     const [isAddingFolder, setIsAddingFolder] = useState(false);
     const [newFolderName, setNewFolderName] = useState('');
+    const [showModal, setShowModal] = useState(false);
+    const [showEventsModal, setShowEventsModal] = useState(false);
 
     const pathname = usePathname();
 
@@ -78,7 +83,7 @@ export default function CalendarPageDay() {
         return week;
     };
 
-    // ��обавим функцию для получения дней месяца
+    // обавим функцию для получения дней месяца
     const getMonthDays = () => {
         const year = selectedDate.getFullYear();
         const month = selectedDate.getMonth();
@@ -122,136 +127,157 @@ export default function CalendarPageDay() {
     console.log('Styles:', styles);
 
     return (
-        <div className={styles.container}>
-            {/* Верхняя панель */}
-            <div className={styles.topPanel}>
-                <div className={styles.viewSwitcher}>
-                    <Link 
-                        href="./calendarPageDay" 
-                        className={`${styles.viewButton} ${pathname === './calendarPageDay' ? styles.activeView : ''}`}
-                    >
-                        День
-                    </Link>
-                    <Link 
-                        href="./calendarPageWeek" 
-                        className={`${styles.viewButton} ${pathname === './calendarPageWeek' ? styles.activeView : ''}`}
-                    >
-                        Неделя
-                    </Link>
-                    <Link 
-                        href="./calendarPageMonth" 
-                        className={`${styles.viewButton} ${pathname === './calendarPageMonth' ? styles.activeView : ''}`}
-                    >
-                        Месяц
-                    </Link>
-                </div>
-                
-                <div className={styles.dateControls}>
-                    <button 
-                        className={styles.dateNav} 
-                        onClick={handlePrevMonth}
-                    >
-                        ←
-                    </button>
-                    <span className={styles.currentDate}>
-                        {selectedDate.toLocaleDateString('ru-RU', { 
-                            month: 'long' 
-                        })}
-                    </span>
-                    <button 
-                        className={styles.dateNav} 
-                        onClick={handleNextMonth}
-                    >
-                        →
-                    </button>
-                </div>
-                
-                <div className={styles.searchContainer}>
-                    <input 
-                        type="text" 
-                        placeholder="Поиск событий"
-                        className={styles.searchInput}
-                    />
-                </div>
-            </div>
-
-            {/* Основной контент */}
-            <div className={styles.mainContent}>
-                {/* Папки */}
-                <div className={styles.foldersPanel}>
-                    {folders.map(folder => (
-                        <button 
-                            key={folder.id} 
-                            className={`${styles.folderButton} ${activeFilter === folder.id ? styles.active : ''}`}
-                            onClick={() => handleFilterClick(folder.id)}
+        <>
+            <SidebarFull />
+            <div className={styles.container}>
+                {/* Верхняя панель */}
+                <div className={styles.topPanel}>
+                    <div className={styles.viewSwitcher}>
+                        <Link 
+                            href="./calendarPageDay" 
+                            className={`${styles.viewButton} ${pathname === './calendarPageDay' ? styles.activeView : ''}`}
                         >
-                            {folder.name}
-                        </button>
-                    ))}
-                    {isAddingFolder ? (
-                        <div className={styles.addFolderInput}>
-                            <input
-                                type="text"
-                                value={newFolderName}
-                                onChange={(e) => setNewFolderName(e.target.value)}
-                                placeholder="Название папки"
-                                autoFocus
-                                onKeyDown={(e) => {
-                                    if (e.key === 'Enter') handleAddFolder();
-                                    if (e.key === 'Escape') {
-                                        setIsAddingFolder(false);
-                                        setNewFolderName('');
-                                    }
-                                }}
-                            />
-                        </div>
-                    ) : (
-                        <button 
-                            className={`${styles.folderButton} ${styles.addFolderButton}`}
-                            onClick={handleAddFolder}
+                            День
+                        </Link>
+                        <Link 
+                            href="./calendarPageWeek" 
+                            className={`${styles.viewButton} ${pathname === './calendarPageWeek' ? styles.activeView : ''}`}
                         >
-                            +
-                        </button>
-                    )}
-                </div>
-
-                {/* Календарь */}
-                <div className={styles.calendarContainer}>
-                    <div className={styles.monthGrid}>
-                        {/* Заголвки дней недели */}
-                        <div className={styles.weekDays}>
-                            {['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'].map((day, index) => (
-                                <div key={index} className={styles.weekDay}>
-                                    {day}
-                                </div>
-                            ))}
-                        </div>
-
-                        {/* Сетка дней */}
-                        <div className={styles.daysGrid}>
-                            {getMonthDays().map((day, index) => (
-                                <div 
-                                    key={index} 
-                                    className={`${styles.dayCell} ${!day.isCurrentMonth ? styles.otherMonth : ''}`}
-                                >
-                                    <div className={styles.dayNumber}>
-                                        {day.date.getDate()}
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
+                            Неделя
+                        </Link>
+                        <Link 
+                            href="./calendarPageMonth" 
+                            className={`${styles.viewButton} ${pathname === './calendarPageMonth' ? styles.activeView : ''}`}
+                        >
+                            Месяц
+                        </Link>
                     </div>
-
-                    {/* Компонент CalendarLittle */}
-                    <div className={styles.upcomingEvents}>
-                        <CalendarLittle 
-                            selectedDate={selectedDate}
-                            onDateChange={setSelectedDate}
+                    
+                    <div className={styles.dateControls}>
+                        <button 
+                            className={styles.dateNav} 
+                            onClick={handlePrevMonth}
+                        >
+                            ←
+                        </button>
+                        <span className={styles.currentDate}>
+                            {selectedDate.toLocaleDateString('ru-RU', { 
+                                month: 'long' 
+                            })}
+                        </span>
+                        <button 
+                            className={styles.dateNav} 
+                            onClick={handleNextMonth}
+                        >
+                            →
+                        </button>
+                    </div>
+                    
+                    <div className={styles.searchContainer}>
+                        <input 
+                            type="text" 
+                            placeholder="Поиск событий"
+                            className={styles.searchInput}
                         />
                     </div>
                 </div>
+
+                {/* Основной контент */}
+                <div className={styles.mainContent}>
+                    {/* Папки */}
+                    <div className={styles.foldersPanel}>
+                        {folders.map(folder => (
+                            <button 
+                                key={folder.id} 
+                                className={`${styles.folderButton} ${activeFilter === folder.id ? styles.active : ''}`}
+                                onClick={() => handleFilterClick(folder.id)}
+                            >
+                                {folder.name}
+                            </button>
+                        ))}
+                        {isAddingFolder ? (
+                            <div className={styles.addFolderInput}>
+                                <input
+                                    type="text"
+                                    value={newFolderName}
+                                    onChange={(e) => setNewFolderName(e.target.value)}
+                                    placeholder="Название папки"
+                                    autoFocus
+                                    onKeyDown={(e) => {
+                                        if (e.key === 'Enter') handleAddFolder();
+                                        if (e.key === 'Escape') {
+                                            setIsAddingFolder(false);
+                                            setNewFolderName('');
+                                        }
+                                    }}
+                                />
+                            </div>
+                        ) : (
+                            <button 
+                                className={`${styles.folderButton} ${styles.addFolderButton}`}
+                                onClick={handleAddFolder}
+                            >
+                                +
+                            </button>
+                        )}
+                        <div className={styles.createEventContainer}>
+                            <button 
+                                className={styles.createEventButton}
+                                onClick={() => setShowModal(true)}
+                            >
+                                + Событие
+                            </button>
+                            <button 
+                                className={styles.createEventButton}
+                                style={{ background: '#00A3BA' }}
+                                onClick={() => setShowEventsModal(true)}
+                            >
+                                Мои события
+                            </button>
+                        </div>
+                    </div>
+
+                    {showModal && <ModalCalendar onClose={() => setShowModal(false)} />}
+                    {showEventsModal && <MyEventsModal onClose={() => setShowEventsModal(false)} />}
+
+                    {/* Календарь */}
+                    <div className={styles.calendarContainer}>
+                        <div className={styles.monthGrid}>
+                            {/* Заголвки дней недели */}
+                            <div className={styles.weekDays}>
+                                {['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'].map((day, index) => (
+                                    <div key={index} className={styles.weekDay}>
+                                        {day}
+                                    </div>
+                                ))}
+                            </div>
+
+                            {/* Сетка дней */}
+                            <div className={styles.daysGrid}>
+                                {getMonthDays().map((day, index) => (
+                                    <div 
+                                        key={index} 
+                                        className={`${styles.dayCell} ${!day.isCurrentMonth ? styles.otherMonth : ''}`}
+                                    >
+                                        <div className={styles.dayNumber}>
+                                            {day.date.getDate()}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Компонент CalendarLittle */}
+                        <div className={styles.upcomingEvents}>
+                            <CalendarLittle 
+                                selectedDate={selectedDate}
+                                onDateChange={setSelectedDate}
+                            />
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
+        </>
     );
 }
 

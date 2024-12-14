@@ -4,10 +4,13 @@ import styles from './page.module.scss';
 import { useState } from 'react';
 import ModalCalendar from '../modalCalendar/page';
 
+interface CalendarLittleProps {
+    selectedDate: Date;
+    onDateChange: (date: Date) => void;
+}
 
-export default function CalendarLittle() {
+export default function CalendarLittle({ selectedDate, onDateChange }: CalendarLittleProps) {
     const [currentDate, setCurrentDate] = useState(new Date());
-    const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
     const months = [
         'Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
@@ -70,7 +73,7 @@ export default function CalendarLittle() {
     };
 
     const handleDateClick = (date: Date, isCurrentMonth: boolean) => {
-        setSelectedDate(date);
+        onDateChange(date);
         if (!isCurrentMonth) {
             setCurrentDate(new Date(date.getFullYear(), date.getMonth(), 1));
         }
