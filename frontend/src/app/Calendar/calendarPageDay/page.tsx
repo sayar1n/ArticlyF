@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import styles from './page.module.scss';
-import SidebarMini from '../../components/SidebarMini/page';
 import CalendarLittle from '../../components/CalendarLittle/page';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';

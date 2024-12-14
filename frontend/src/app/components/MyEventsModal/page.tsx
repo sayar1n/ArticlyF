@@ -15,9 +15,10 @@ interface MyEventsModalProps {
         tagColor: string;
         emoji: string;
     }>;
+    onDeleteEvent: (eventId: string) => void;
 }
 
-export default function MyEventsModal({ onClose, events }: MyEventsModalProps) {
+export default function MyEventsModal({ onClose, events, onDeleteEvent }: MyEventsModalProps) {
     const modalRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -30,6 +31,12 @@ export default function MyEventsModal({ onClose, events }: MyEventsModalProps) {
         document.addEventListener('mousedown', handleClickOutside);
         return () => document.removeEventListener('mousedown', handleClickOutside);
     }, [onClose]);
+
+    const handleDeleteEvent = (eventId: string) => {
+        if (onDeleteEvent) {
+            onDeleteEvent(eventId);
+        }
+    };
 
     return (
         <div className={styles.modalOverlay}>
@@ -47,6 +54,7 @@ export default function MyEventsModal({ onClose, events }: MyEventsModalProps) {
                                 endTime={event.endTime}
                                 tagColor={event.tagColor}
                                 emoji={event.emoji}
+                                onDelete={() => handleDeleteEvent(event.id)}
                             />
                         ))}
                     </div>
