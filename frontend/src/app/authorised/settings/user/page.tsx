@@ -4,7 +4,7 @@ import AuthCheck from "@/app/utils/AuthCheck";
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { userApi } from '@/app/utils/api';
-import UploadIcon from '/public/tabler_photo-up.svg';
+// import UploadIcon from '/public/tabler_photo-up.svg';
 import styles from "./page.module.scss"
 
 interface UserData {
@@ -111,7 +111,7 @@ export default function UserSettings() {
                             {selectedImage ? (
                                 <img src={selectedImage} alt="Preview" />
                             ) : (
-                                <Image src={UploadIcon} alt="Upload" />
+                                <Image src="/images/upload.svg" alt="Upload" />
                             )}
                             <input
                                 type="file"

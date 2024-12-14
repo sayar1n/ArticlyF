@@ -109,7 +109,9 @@ export default function CalendarPageWeek() {
         setEvents(prev => [...prev, newEvent]);
     };
 
-    console.log('Styles:', styles);
+    const handleDeleteEvent = (eventId: string) => {
+        setEvents(prevEvents => prevEvents.filter(event => event.id !== eventId));
+    };
 
     return (
         <>
@@ -232,6 +234,7 @@ export default function CalendarPageWeek() {
                         <MyEventsModal 
                             onClose={() => setShowEventsModal(false)}
                             events={events}
+                            onDeleteEvent={handleDeleteEvent}
                         />
                     )}
 

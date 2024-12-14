@@ -143,7 +143,9 @@ export default function CalendarPageMonth() {
         setEvents(prev => [...prev, newEvent]);
     };
 
-    console.log('Styles:', styles);
+    const handleDeleteEvent = (eventId: string) => {
+        setEvents(prevEvents => prevEvents.filter(event => event.id !== eventId));
+    };
 
     return (
         <>
@@ -266,6 +268,7 @@ export default function CalendarPageMonth() {
                         <MyEventsModal 
                             onClose={() => setShowEventsModal(false)}
                             events={events}
+                            onDeleteEvent={handleDeleteEvent}
                         />
                     )}
 

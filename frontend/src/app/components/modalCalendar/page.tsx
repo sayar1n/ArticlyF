@@ -6,6 +6,7 @@ import { useClickOutside } from '@/app/hooks/useClickOutside';
 import TimePicker from '../TimePicker/page';
 import DatePicker from '../DatePicker/page';
 
+
 interface ModalCalendarProps {
     onClose: () => void;
     onCreateEvent: (event: {
@@ -25,6 +26,8 @@ interface ModalCalendarProps {
         theme: string;
     }) => void;
 }
+
+
 
 export default function ModalCalendar({ onClose, onCreateEvent }: ModalCalendarProps) {
     const [selectedEmoji, setSelectedEmoji] = useState('❤');

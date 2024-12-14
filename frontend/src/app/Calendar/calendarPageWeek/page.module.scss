@@ -224,15 +224,14 @@
     display: flex;
     flex: 1;
     overflow-y: auto;
-    overflow-x: hidden;
+    min-height: 0;
 }
 
 .timeScale {
     width: 60px;
     flex-shrink: 0;
-    background: white;
     z-index: 1;
-    margin-top: 50px;
+    margin-top: 40px;
 }
 
 .timeSlot {
@@ -241,19 +240,21 @@
     align-items: start;
     justify-content: flex-end;
     padding-right: 10px;
-    padding-top: 5px;
+    padding-top: 0;
     font-size: 14px;
     color: #666;
     font-weight: 500;
-
-    &:first-child {
-        margin-top: -10px;
-    }
 }
 
 .calendarGrid {
-    flex: 1;
-    min-width: 0;
+    position: relative;
+    flex-grow: 1;
+    display: grid;
+    grid-template-rows: repeat(24, 90px);
+    border-left: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+    border-right: 1px solid #e0e0e0;
+    min-height: 2160px;
 }
 
 .hourSlot {
@@ -314,6 +315,7 @@
 }
 
 .dayColumn {
+    position: relative;
     text-align: center;
     padding: 2px 0;
     border-right: 1px solid #eee;
@@ -340,6 +342,8 @@
     grid-template-columns: repeat(7, 1fr);
     flex: 1;
     gap: 0;
+    min-height: 2160px;
+    position: relative;
 }
 
 .hourSlot {

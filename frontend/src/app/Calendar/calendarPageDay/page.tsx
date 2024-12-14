@@ -8,6 +8,8 @@ import { usePathname } from 'next/navigation';
 import ModalCalendar from '../../components/modalCalendar/page';
 import SidebarFull from '../../components/SidebarFull/page';
 import MyEventsModal from '../../components/MyEventsModal/page';
+import EventPublic from '../../components/EventPublic/page';
+import { Event } from '@/app/types/Event';
 
 type Folder = {
     id: number;
@@ -26,21 +28,7 @@ export default function CalendarPageDay() {
     const [newFolderName, setNewFolderName] = useState('');
     const [showModal, setShowModal] = useState(false);
     const [showEventsModal, setShowEventsModal] = useState(false);
-    const [events, setEvents] = useState<Array<{
-        id: string;
-        title: string;
-        date: string;
-        startTime: string;
-        endTime: string;
-        tagColor: string;
-        emoji: string;
-        showInCalendar: boolean;
-        description?: string;
-        location?: string;
-        isTask: boolean;
-        isImportant: boolean;
-        theme: string;
-    }>>([]);
+    const [events, setEvents] = useState<Event[]>([]);
 
     const pathname = usePathname();
 
@@ -83,7 +71,9 @@ export default function CalendarPageDay() {
         setEvents(prev => [...prev, newEvent]);
     };
 
-    console.log('Styles:', styles);
+    const handleDeleteEvent = (eventId: string) => {
+        setEvents(prev => prev.filter(event => event.id !== eventId));
+    };
 
     return (
         <>
@@ -208,6 +198,7 @@ export default function CalendarPageDay() {
                         <MyEventsModal 
                             onClose={() => setShowEventsModal(false)}
                             events={events}
+                            onDeleteEvent={handleDeleteEvent}
                         />
                     )}
 
@@ -231,6 +222,17 @@ export default function CalendarPageDay() {
                                         <div className={styles.halfHourMark}></div>
                                     </div>
                                 ))}
+                                
+                                {/* Рендер событий */}
+                                {events
+                                    .filter(event => event.showInCalendar)
+                                    .map(event => (
+                                        <EventPublic
+                                            key={event.id}
+                                            event={event}
+                                            hourHeight={90}
+                                        />
+                                    ))}
                             </div>
                         </div>
 

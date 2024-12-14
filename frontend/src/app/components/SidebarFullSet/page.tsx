@@ -3,9 +3,9 @@
 import Link from 'next/link';
 import styles from './page.module.scss';
 import { useState } from 'react';
-import SidebarMini from '../SidebarMini/page';
+import SidebarMiniSet from '../SidebarMiniSet/page';
 
-export default function SidebarFull() {
+export default function SidebarFullSet() {
     const [isCollapsing, setIsCollapsing] = useState(false);
     const [showMini, setShowMini] = useState(false);
 
@@ -17,7 +17,7 @@ export default function SidebarFull() {
     };
 
     if (showMini) {
-        return <SidebarMini />;
+        return <SidebarMiniSet />;
     }
 
     return (
@@ -32,30 +32,48 @@ export default function SidebarFull() {
             </div>
             <div className={styles.logo}>Articly</div>
             <nav className={styles.navigation}>
-                <span className={styles.title}>Рабочая зона</span>
+                <span className={styles.title}>Настройки</span>
                 <ul>
                     <li className={styles.calendar}>
-                        <Link href="/Calendar/calendarPageDay" className={styles.link}>
-                            <img src="/images/calendar.svg" alt="calendar" />
-                            Календарь
+                        <Link href="/authorised/settings/user" className={styles.link}>
+                            <img src="/images/user_set.svg" alt="user" />
+                            Пользователь
                         </Link>
                     </li>
                     <li className={styles.workSpace}>
-                        <Link href="/work_space" className={styles.link}>
-                            <img src="/images/work_space.svg" alt="work space" />
-                            Пространство
+                        <Link href="/authorised/settings/security" className={styles.link}>
+                            <img src="/images/safety_set.svg" alt="safety" />
+                            Безопасность
                         </Link>
                     </li>
                     <li className={styles.tasks}>
-                        <Link href="/tasks" className={styles.link}>
-                            <img src="/images/tasks.svg" alt="tasks" />
-                            Задачи
+                        <Link href="/authorised/settings/privacy" className={styles.link}>
+                            <img src="/images/privicy_set.svg" alt="privacy" />
+                            Приватность
                         </Link>
                     </li>
                     <li className={styles.focus}>
-                        <Link href="/focusPage" className={styles.link}>
-                            <img src="/images/focus.svg" alt="focus" />
-                            Фокусирование
+                        <Link href="/authorised/settings/notifications" className={styles.link}>
+                            <img src="/images/feeds_set.svg" alt="feed" />
+                            Уведомления
+                        </Link>
+                    </li>
+                    <li className={styles.focus}>
+                        <Link href="/authorised/settings/design" className={styles.link}>
+                            <img src="/images/color_set.svg" alt="color" />
+                            Оформление
+                        </Link>
+                    </li>
+                    <li className={styles.focus}>
+                        <Link href="/authorised/settings/subscription" className={styles.link}>
+                            <img src="/images/sub_set.svg" alt="subscription" />
+                            Подписка
+                        </Link>
+                    </li>
+                    <li className={styles.focus}>
+                        <Link href="/authorised/settings/feedback" className={styles.link}>
+                            <img src="/images/feedback_set.svg" alt="feedback" />
+                            Обратная связь
                         </Link>
                     </li>
                 </ul>

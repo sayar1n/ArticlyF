@@ -31,10 +31,11 @@ export default function TimePicker({ value, onChange, onClose }: TimePickerProps
     const handleSelect = (type: 'hours' | 'minutes', value: number) => {
         if (type === 'hours') {
             setHours(value);
+            onChange(`${String(value).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`);
         } else {
             setMinutes(value);
+            onChange(`${String(hours).padStart(2, '0')}:${String(value).padStart(2, '0')}`);
         }
-        onChange(`${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`);
     };
 
     return (
