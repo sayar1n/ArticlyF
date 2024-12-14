@@ -30,6 +30,7 @@ export default function ModalCalendar({ onClose }: ModalCalendarProps) {
     const [showEndTimePicker, setShowEndTimePicker] = useState(false);
     const [showDatePicker, setShowDatePicker] = useState(false);
     const [date, setDate] = useState('');
+    const [showInCalendar, setShowInCalendar] = useState(true);
 
     const emojis = ['✎', '✏', '✐', '⚐', '⚑', '✓', '✔', '✗', '✘', '♡', '♥', '❤', '☆', '★', '✦', '✧'];
     const tagColors = [
@@ -273,6 +274,14 @@ export default function ModalCalendar({ onClose }: ModalCalendarProps) {
                                 onChange={(e) => setIsImportant(e.target.checked)}
                             />
                             Добавить в важное
+                        </label>
+                        <label className={styles.checkbox}>
+                            <input
+                                type="checkbox"
+                                checked={showInCalendar}
+                                onChange={(e) => setShowInCalendar(e.target.checked)}
+                            />
+                            Отобразить в календаре
                         </label>
                     </div>
 
