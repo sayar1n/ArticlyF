@@ -1,0 +1,63 @@
+.timePickerWrapper {
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    padding: 8px 0;
+    width: 120px;
+}
+
+.columns {
+    display: flex;
+    height: 240px;
+}
+
+.column {
+    width: 50%;
+    overflow-y: auto;
+    border-right: 1px solid #F0F0F0;
+    scroll-behavior: smooth;
+    
+    &:last-child {
+        border-right: none;
+    }
+    
+    &::-webkit-scrollbar {
+        width: 4px;
+    }
+    
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        background: #E5E5E5;
+        border-radius: 2px;
+        
+        &:hover {
+            background: #D5D5D5;
+        }
+    }
+}
+
+.timeOption {
+    padding: 6px 0;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 14px;
+    color: #666666;
+    
+    &:hover {
+        background: rgba(0, 186, 52, 0.05);
+    }
+    
+    &.selected {
+        background: rgba(0, 186, 52, 0.1);
+        color: #00BA34;
+        font-weight: 500;
+    }
+} 

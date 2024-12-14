@@ -1,10 +1,14 @@
 .modalCalendar {
     width: 558px;
-    height: 584px;
+    height: 674px;
     background-color: #ffffff;
     border-radius: 11px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-    position: relative;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
 }
 
 .modalContent {
@@ -28,19 +32,52 @@
     margin-left: 8px;
 }
 
+.emojiPicker {
+    position: absolute;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 12px;
+    z-index: 1000;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    width: 160px;
+}
+
+.emojiOption {
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: #666666;
+    transition: all 0.2s ease;
+    
+    &:hover {
+        background: rgba(0, 186, 52, 0.05);
+        color: #333333;
+        transform: scale(1.1);
+    }
+    
+    &:active {
+        background: rgba(0, 186, 52, 0.1);
+        transform: scale(0.95);
+    }
+}
+
 .titleInput {
     flex: 1;
     border: none;
     outline: none;
     font-family: 'Nunito Sans', sans-serif;
     font-weight: 700;
-    font-size: 20px;
-}
-
-.dateContainer {
-    position: relative;
-    display: flex;
-    align-items: center;
+    font-size: 22px;
 }
 
 .date {
@@ -56,51 +93,38 @@
         outline: none;
     }
 }
-
-.datePickerHidden {
-    position: absolute;
-    width: 0;
-    height: 0;
-    opacity: 0;
-    padding: 0;
-    margin: 0;
-    border: none;
-}
-
-.calendarButton {
-    position: absolute;
-    right: 4px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 14px;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0.5;
-    
-    &:hover {
-        opacity: 1;
-    }
+.dividerHeader {
+    height: 1px;
+    background-color: #E5E5E5;
+    margin: 10px 0 25px;
 }
 
 .divider {
     height: 1px;
     background-color: #E5E5E5;
-    margin: 10px 0 15px;
+    margin: 25px 0;
 }
 
-.timeSection, .themeSection, .checkboxSection, .descriptionSection, .locationSection {
+.timeSection {
     margin: 15px 0;
     display: flex;
     align-items: center;
     gap: 20px;
 }
 
+.timeLabel {
+    color: #666666;
+    font-size: 16px;
+    width: 50px;
+}
+
 .timeInputs {
     display: flex;
     gap: 4px;
+}
+
+.timeInputWrapper {
+    position: relative;
 }
 
 .timeInput {
@@ -109,7 +133,7 @@
     background: #F3F3F3;
     border: none;
     border-radius: 6px;
-    font-size: 14px;
+    font-size: 16px;
     color: #333333;
     text-align: center;
     cursor: pointer;
@@ -118,12 +142,6 @@
         outline: none;
         background: #EBEBEB;
     }
-}
-
-.timeLabel {
-    color: #666666;
-    font-size: 14px;
-    width: 50px;
 }
 
 .tagSection {
@@ -136,9 +154,38 @@
 
 .tagLabel {
     color: #666666;
-    font-size: 14px;
+    font-size: 16px;
     min-width: 35px;
     flex-shrink: 0;
+}
+
+.selectedTags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    min-width: 32px;
+}
+
+.tag {
+    display: flex;
+    align-items: center;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 14px;
+    color: white;
+    gap: 4px;
+}
+
+.removeTag {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 0 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .addTagButton {
@@ -167,9 +214,54 @@
     }
 }
 
+.tagPicker {
+    position: absolute;
+    top: calc(100% + 5px);
+    right: 0;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    padding: 12px;
+    z-index: 1000;
+    width: 180px;
+}
+
+.colorPicker {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+}
+
+.colorOption {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    &:hover {
+        transform: scale(1.1);
+    }
+}
+
+.noTagIcon {
+    color: #999;
+    font-size: 14px;
+}
+
+.themeSection {
+    margin: 15px 0;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
 .themeLabel {
     color: #666666;
-    font-size: 14px;
+    font-size: 16px;
     width: 50px;
 }
 
@@ -179,6 +271,39 @@
     border: none;
     border-radius: 7px;
     cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    width: 182px;
+    
+    .themeArrow {
+        font-size: 12px;
+        color: #666666;
+    }
+    
+    &:hover {
+        background: #EBEBEB;
+        transition: background-color 0.2s ease;
+    }
+}
+
+.themePicker {
+    position: absolute;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    padding: 8px;
+    z-index: 1000;
+    width: 200px;
+}
+
+.checkboxSection {
+    margin: 15px 0;
+    display: flex;
+    align-items: center;
+    gap: 30px;
 }
 
 .checkbox {
@@ -188,7 +313,7 @@
     cursor: pointer;
     user-select: none;
     color: #666666;
-    font-size: 14px;
+    font-size: 16px;
 
     input[type="checkbox"] {
         appearance: none;
@@ -227,27 +352,37 @@
     }
 }
 
-.checkboxSection {
+.descriptionSection, .locationSection {
     margin: 15px 0;
     display: flex;
-    align-items: center;
-    gap: 30px;
+    gap: 20px;
 }
 
-.descriptionInput {
-    width: 100%;
-    height: 120px;
+.sectionLabel {
+    width: 100px;
+    padding-top: 12px;
+}
+
+.descriptionInput, .locationInput {
+    width: calc(100% - 120px);
     padding: 12px;
     border: 1px solid #E5E5E5;
     border-radius: 7px;
     resize: none;
+    transition: border-color 0.2s ease;
+    
+    &:focus {
+        outline: none;
+        border-color: #CCCCCC;
+    }
+}
+
+.descriptionInput {
+    height: 120px;
 }
 
 .locationInput {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #E5E5E5;
-    border-radius: 7px;
+    height: 40px;
 }
 
 .createButton {
@@ -262,25 +397,37 @@
     position: absolute;
     bottom: 35px;
     left: 30px;
+    transition: background-color 0.2s ease;
+    
+    &:hover {
+        background: #00A52E;
+    }
+    
+    &:active {
+        background: #009229;
+    }
 }
 
-.emojiPicker, .themePicker {
-    position: absolute;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-    padding: 8px;
-    z-index: 1000;
+.dateContainer {
+    position: relative;
+    cursor: pointer;
 }
 
-.emojiPicker {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 4px;
-}
-
-.themePicker {
-    width: 200px;
+.date {
+    width: 80px;
+    padding: 6px 8px;
+    background: #F3F3F3;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #333333;
+    text-align: center;
+    cursor: pointer;
+    
+    &:hover {
+        background: #EBEBEB;
+        transition: background-color 0.2s ease;
+    }
 }
 
 .themeOption {
@@ -361,76 +508,4 @@
     &:active {
         background: rgba(0, 0, 0, 0.2);
     }
-}
-
-.selectedTags {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    min-width: 32px;
-}
-
-.tag {
-    display: flex;
-    align-items: center;
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 14px;
-    color: white;
-    gap: 4px;
-}
-
-.removeTag {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    padding: 0 2px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.tagPicker {
-    position: absolute;
-    top: calc(100% + 5px);
-    right: 0;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-    padding: 12px;
-    z-index: 1000;
-    width: 180px;
-}
-
-.colorPicker {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 8px;
-}
-
-.colorOption {
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #F5F5F5;
-    
-    &:hover {
-        transform: scale(1.1);
-    }
-}
-
-.noTagIcon {
-    color: #999;
-    font-size: 14px;
-}
-
-.addTagConfirm {
-    display: none;
 }

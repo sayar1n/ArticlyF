@@ -1,26 +1,31 @@
 "use client";
 
 import styles from './page.module.scss';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+import { useClickOutside } from '@/app/hooks/useClickOutside';
+import TimePicker from '../TimePicker/page';
+import DatePicker from '../DatePicker/page';
 
 export default function ModalCalendar() {
     const [selectedEmoji, setSelectedEmoji] = useState('❤');
     const [showEmojiPicker, setShowEmojiPicker] = useState(false);
-    const [title, setTitle] = useState('Название');
+    const [title, setTitle] = useState('');
     const [startTime, setStartTime] = useState('');
     const [endTime, setEndTime] = useState('');
     const [selectedTags, setSelectedTags] = useState<Array<{color: string, name: string}>>([]);
     const [showTagPicker, setShowTagPicker] = useState(false);
-    const [newTagColor, setNewTagColor] = useState('#FF9898');
-    const [newTagName, setNewTagName] = useState('');
     const [isTask, setIsTask] = useState(false);
     const [isImportant, setIsImportant] = useState(false);
     const [description, setDescription] = useState('');
     const [location, setLocation] = useState('');
-    const [theme, setTheme] = useState('Работа');
+    const [theme, setTheme] = useState('Общее');
     const [showThemePicker, setShowThemePicker] = useState(false);
     const [newTheme, setNewTheme] = useState('');
-    const [themes, setThemes] = useState(['Работа', 'Личное', 'Учеба']);
+    const [themes, setThemes] = useState(['Общее', 'Личное', 'Учеба']);
+    const [showStartTimePicker, setShowStartTimePicker] = useState(false);
+    const [showEndTimePicker, setShowEndTimePicker] = useState(false);
+    const [showDatePicker, setShowDatePicker] = useState(false);
+    const [date, setDate] = useState('');
 
     const emojis = ['✎', '✏', '✐', '⚐', '⚑', '✓', '✔', '✗', '✘', '♡', '♥', '❤', '☆', '★', '✦', '✧'];
     const tagColors = [
@@ -28,13 +33,13 @@ export default function ModalCalendar() {
         '#FF98FF', '#98FFFF', '#FFA07A', '#98FB98'
     ];
 
-    const addNewTag = () => {
-        if (newTagName.trim()) {
-            setSelectedTags([...selectedTags, { color: newTagColor, name: newTagName }]);
-            setNewTagName('');
-            setShowTagPicker(false);
-        }
-    };
+    const themePickerRef = useRef<HTMLDivElement>(null);
+    const emojiPickerRef = useRef<HTMLDivElement>(null);
+    const tagPickerRef = useRef<HTMLDivElement>(null);
+
+    useClickOutside(themePickerRef, () => setShowThemePicker(false));
+    useClickOutside(emojiPickerRef, () => setShowEmojiPicker(false));
+    useClickOutside(tagPickerRef, () => setShowTagPicker(false));
 
     return (
         <div className={styles.modalCalendar}>
@@ -44,7 +49,7 @@ export default function ModalCalendar() {
                         {selectedEmoji}
                     </button>
                     {showEmojiPicker && (
-                        <div className={styles.emojiPicker}>
+                        <div ref={emojiPickerRef} className={styles.emojiPicker}>
                             {emojis.map((emoji, index) => (
                                 <button key={index} onClick={() => {
                                     setSelectedEmoji(emoji);
@@ -60,28 +65,65 @@ export default function ModalCalendar() {
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
                         className={styles.titleInput}
+                        placeholder="Название"
                     />
-                    {/* сделать рабочий календарь */}
-                    <div className={styles.date}>27.12</div> 
+                    <div className={styles.dateContainer}>
+                        <div 
+                            className={styles.date}
+                            onClick={() => setShowDatePicker(!showDatePicker)}
+                        >
+                            {date || 'дд.мм'}
+                        </div>
+                        {showDatePicker && (
+                            <DatePicker
+                                value={date}
+                                onChange={(value) => {
+                                    setDate(value);
+                                    setShowDatePicker(false);
+                                }}
+                                onClose={() => setShowDatePicker(false)}
+                            />
+                        )}
+                    </div>
                 </div>
 
-                <div className={styles.divider} />
+                <div className={styles.dividerHeader} />
 
                 <div className={styles.timeSection}>
                     <div className={styles.timeLabel}>Время</div>
                     <div className={styles.timeInputs}>
-                        <input
-                            type="time"
-                            value={startTime}
-                            onChange={(e) => setStartTime(e.target.value)}
-                            className={styles.timeInput}
-                        />
-                        <input
-                            type="time"
-                            value={endTime}
-                            onChange={(e) => setEndTime(e.target.value)}
-                            className={styles.timeInput}
-                        />
+                        <div className={styles.timeInputWrapper}>
+                            <input
+                                type="text"
+                                value={startTime || '--:--'}
+                                onClick={() => setShowStartTimePicker(true)}
+                                readOnly
+                                className={styles.timeInput}
+                            />
+                            {showStartTimePicker && (
+                                <TimePicker
+                                    value={startTime}
+                                    onChange={(value) => setStartTime(value)}
+                                    onClose={() => setShowStartTimePicker(false)}
+                                />
+                            )}
+                        </div>
+                        <div className={styles.timeInputWrapper}>
+                            <input
+                                type="text"
+                                value={endTime || '--:--'}
+                                onClick={() => setShowEndTimePicker(true)}
+                                readOnly
+                                className={styles.timeInput}
+                            />
+                            {showEndTimePicker && (
+                                <TimePicker
+                                    value={endTime}
+                                    onChange={(value) => setEndTime(value)}
+                                    onClose={() => setShowEndTimePicker(false)}
+                                />
+                            )}
+                        </div>
                     </div>
                     
                     <div className={styles.tagSection}>
@@ -110,7 +152,7 @@ export default function ModalCalendar() {
                         <button className={styles.addTagButton} onClick={() => setShowTagPicker(!showTagPicker)}>+</button>
                         
                         {showTagPicker && (
-                            <div className={styles.tagPicker}>
+                            <div ref={tagPickerRef} className={styles.tagPicker}>
                                 <div className={styles.colorPicker}>
                                     <button 
                                         className={styles.colorOption}
@@ -127,7 +169,6 @@ export default function ModalCalendar() {
                                             className={styles.colorOption}
                                             style={{ backgroundColor: color }}
                                             onClick={() => {
-                                                setNewTagColor(color);
                                                 setSelectedTags([{ color, name: '' }]);
                                                 setShowTagPicker(false);
                                             }}
@@ -141,15 +182,15 @@ export default function ModalCalendar() {
 
                 <div className={styles.themeSection}>
                     <div className={styles.themeLabel}>Тема</div>
-                    <input
-                        type="text"
-                        value={theme}
-                        readOnly
-                        onClick={() => setShowThemePicker(!showThemePicker)}
+                    <div
                         className={styles.themeInput}
-                    />
+                        onClick={() => setShowThemePicker(!showThemePicker)}
+                    >
+                        {theme}
+                        <span className={styles.themeArrow}>▼</span>
+                    </div>
                     {showThemePicker && (
-                        <div className={styles.themePicker}>
+                        <div ref={themePickerRef} className={styles.themePicker}>
                             {themes.map((t, index) => (
                                 <div key={index} className={styles.themeOption}>
                                     <span onClick={() => {
@@ -158,18 +199,20 @@ export default function ModalCalendar() {
                                     }}>
                                         {t}
                                     </span>
-                                    <button 
-                                        className={styles.removeThemeButton}
-                                        onClick={() => {
-                                            const newThemes = themes.filter(theme => theme !== t);
-                                            setThemes(newThemes);
-                                            if (theme === t) {
-                                                setTheme(newThemes[0] || '');
-                                            }
-                                        }}
-                                    >
-                                        ×
-                                    </button>
+                                    {t !== 'Общее' && (
+                                        <button 
+                                            className={styles.removeThemeButton}
+                                            onClick={() => {
+                                                const newThemes = themes.filter(theme => theme !== t);
+                                                setThemes(newThemes);
+                                                if (theme === t) {
+                                                    setTheme('Общее');
+                                                }
+                                            }}
+                                        >
+                                            ×
+                                        </button>
+                                    )}
                                 </div>
                             ))}
                             <div className={styles.addThemeOption}>
@@ -183,7 +226,7 @@ export default function ModalCalendar() {
                                 <button 
                                     className={styles.addThemeButton}
                                     onClick={() => {
-                                        if (newTheme.trim()) {
+                                        if (newTheme.trim() && !themes.includes(newTheme.trim())) {
                                             setThemes([...themes, newTheme.trim()]);
                                             setNewTheme('');
                                         }
@@ -223,6 +266,7 @@ export default function ModalCalendar() {
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
                         className={styles.descriptionInput}
+                        placeholder="Описание события"
                     />
                 </div>
 
@@ -230,8 +274,7 @@ export default function ModalCalendar() {
 
                 <div className={styles.locationSection}>
                     <div className={styles.sectionLabel}>Локация</div>
-                    <input
-                        type="text"
+                    <textarea
                         value={location}
                         onChange={(e) => setLocation(e.target.value)}
                         className={styles.locationInput}
