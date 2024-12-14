@@ -1,0 +1,83 @@
+.widget {
+    background-color: white;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    transition: all 0.3s ease-in-out;
+    width: 550px;
+    box-shadow: 0 2px 8px rgba(0, 165, 46, 0.1);
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 30px;
+    background-color: #00A52E;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+    .titleInput {
+        background: transparent;
+        border: none;
+        outline: none;
+        font-size: 18px;
+        font-weight: 500;
+        color: white;
+        width: 100%;
+        padding: 5px 0;
+
+        &::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+    }
+}
+
+.content {
+    padding: 0;
+    background-color: #ffffff;
+    max-height: 0;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+    overflow: hidden;
+
+    .expanded & {
+        max-height: 2000px;
+        opacity: 1;
+        padding: 20px;
+        padding-right: 30px;
+    }
+
+    .noteContent {
+        width: calc(100% - 20px);
+        min-height: 150px;
+        padding: 15px;
+        border: 1px solid rgba(0, 165, 46, 0.2);
+        border-radius: 8px;
+        resize: vertical;
+        outline: none;
+
+        &:focus {
+            border-color: #00A52E;
+        }
+    }
+} 
+
+.expandButton {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 0 10px;
+    color: #fff;
+    transition: transform 0.3s ease;
+
+    &:hover {
+        opacity: 0.8;
+    }
+}
+
+.expanded {
+    .expandButton {
+        transform: rotate(180deg);
+    }
+}

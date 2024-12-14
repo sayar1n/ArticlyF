@@ -37,7 +37,7 @@ export default function SidebarMiniSet() {
                         <Link href="/Calendar/calendarPageDay"><img src="/images/calendar.svg" alt="calendar" /></Link>
                     </li>
                     <li className={styles.workSpace}>
-                        <Link href="/work_space"><img src="/images/work_space.svg" alt="work space" /></Link></li>
+                        <Link href="/WorkSpace"><img src="/images/work_space.svg" alt="work space" /></Link></li>
                     <li className={styles.tasks}>
                         <Link href="/tasks"><img src="/images/tasks.svg" alt="tasks" /></Link>
                     </li>

@@ -1,0 +1,150 @@
+.widget {
+    background-color: white;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    transition: all 0.3s ease-in-out;
+    width: 550px;
+    box-shadow: 0 2px 8px rgba(0, 165, 46, 0.1);
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 30px;
+    background-color: #00A52E;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+    .titleInput {
+        background: transparent;
+        border: none;
+        outline: none;
+        font-size: 18px;
+        font-weight: 500;
+        color: white;
+        width: 100%;
+        padding: 5px 0;
+
+        &::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+    }
+}
+
+.expandButton {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 0 10px;
+    color: #fff;
+    transition: transform 0.3s ease;
+
+    &:hover {
+        opacity: 0.8;
+    }
+}
+
+.expanded {
+    .expandButton {
+        transform: rotate(180deg);
+    }
+}
+
+.content {
+    padding: 0;
+    background-color: #ffffff;
+    max-height: 0;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+    overflow: hidden;
+
+    .expanded & {
+        max-height: 2000px;
+        opacity: 1;
+        padding: 20px;
+    }
+}
+
+.taskList {
+    margin-bottom: 20px;
+
+    .taskItem {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding: 12px 15px;
+        border-bottom: 1px solid rgba(0, 165, 46, 0.1);
+
+        &:hover {
+            background-color: rgba(0, 165, 46, 0.05);
+
+            .deleteButton {
+                opacity: 1;
+            }
+        }
+
+        .checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #00A52E;
+            border-radius: 4px;
+            
+            &:checked {
+                background-color: #00A52E;
+            }
+        }
+
+        .completed {
+            text-decoration: line-through;
+            color: rgba(0, 165, 46, 0.5);
+        }
+
+        .deleteButton {
+            background: none;
+            border: none;
+            color: #999;
+            font-size: 18px;
+            padding: 4px 8px;
+            cursor: pointer;
+            opacity: 0;
+            transition: all 0.2s;
+
+            &:hover {
+                color: #666;
+            }
+        }
+    }
+}
+
+.addTask {
+    padding: 15px;
+    display: flex;
+    gap: 10px;
+
+    input {
+        flex: 1;
+        padding: 8px 12px;
+        border: 1px solid rgba(0, 165, 46, 0.2);
+        border-radius: 6px;
+        outline: none;
+
+        &:focus {
+            border-color: #00A52E;
+        }
+    }
+
+    button {
+        padding: 8px 15px;
+        background: #00A52E;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+
+        &:hover {
+            background: #008f27;
+        }
+    }
+}

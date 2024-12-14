@@ -41,7 +41,7 @@ export default function SidebarFull() {
                         </Link>
                     </li>
                     <li className={styles.workSpace}>
-                        <Link href="/work_space" className={styles.link}>
+                        <Link href="/WorkSpace" className={styles.link}>
                             <img src="/images/work_space.svg" alt="work space" />
                             Пространство
                         </Link>
