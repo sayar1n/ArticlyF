@@ -27,6 +27,21 @@ export default function CalendarPageDay() {
     const [newFolderName, setNewFolderName] = useState('');
     const [showModal, setShowModal] = useState(false);
     const [showEventsModal, setShowEventsModal] = useState(false);
+    const [events, setEvents] = useState<Array<{
+        id: string;
+        title: string;
+        date: string;
+        startTime: string;
+        endTime: string;
+        tagColor: string;
+        emoji: string;
+        showInCalendar: boolean;
+        description?: string;
+        location?: string;
+        isTask: boolean;
+        isImportant: boolean;
+        theme: string;
+    }>>([]);
 
     const pathname = usePathname();
 
@@ -63,6 +78,10 @@ export default function CalendarPageDay() {
         } else {
             setIsAddingFolder(true);
         }
+    };
+
+    const handleCreateEvent = (newEvent: any) => {
+        setEvents(prev => [...prev, newEvent]);
     };
 
     console.log('Styles:', styles);
@@ -180,8 +199,18 @@ export default function CalendarPageDay() {
                         </div>
                     </div>
 
-                    {showModal && <ModalCalendar onClose={() => setShowModal(false)} />}
-                    {showEventsModal && <MyEventsModal onClose={() => setShowEventsModal(false)} />}
+                    {showModal && (
+                        <ModalCalendar 
+                            onClose={() => setShowModal(false)} 
+                            onCreateEvent={handleCreateEvent}
+                        />
+                    )}
+                    {showEventsModal && (
+                        <MyEventsModal 
+                            onClose={() => setShowEventsModal(false)}
+                            events={events}
+                        />
+                    )}
 
                     {/* Календарь */}
                     <div className={styles.calendarContainer}>

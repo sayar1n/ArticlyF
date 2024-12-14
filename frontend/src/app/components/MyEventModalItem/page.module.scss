@@ -1,0 +1,62 @@
+.eventItem {
+    background: rgb(255, 180, 180);
+    border-radius: 8px;
+    padding: 12px;
+    width: 250px;
+    height: 100px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s ease;
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        opacity: 0.95;
+    }
+}
+
+.eventContent {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    height: 100%;
+}
+
+.eventHeader {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.emoji {
+    font-size: 16px;
+}
+
+.title {
+    font-weight: 500;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.eventInfo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    opacity: 0.9;
+}
+
+.date {
+    opacity: 0.8;
+}
+
+.time {
+    opacity: 0.8;
+}
+
+.tag {
+    display: none;
+} 

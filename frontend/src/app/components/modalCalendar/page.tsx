@@ -8,9 +8,25 @@ import DatePicker from '../DatePicker/page';
 
 interface ModalCalendarProps {
     onClose: () => void;
+    onCreateEvent: (event: {
+        id: string;
+        title: string;
+        date: string;
+        startTime: string;
+        endTime: string;
+        isFullDay: boolean;
+        tagColor: string;
+        emoji: string;
+        showInCalendar: boolean;
+        description?: string;
+        location?: string;
+        isTask: boolean;
+        isImportant: boolean;
+        theme: string;
+    }) => void;
 }
 
-export default function ModalCalendar({ onClose }: ModalCalendarProps) {
+export default function ModalCalendar({ onClose, onCreateEvent }: ModalCalendarProps) {
     const [selectedEmoji, setSelectedEmoji] = useState('❤');
     const [showEmojiPicker, setShowEmojiPicker] = useState(false);
     const [title, setTitle] = useState('');
@@ -57,6 +73,44 @@ export default function ModalCalendar({ onClose }: ModalCalendarProps) {
         document.addEventListener('mousedown', handleClickOutside);
         return () => document.removeEventListener('mousedown', handleClickOutside);
     }, [onClose]);
+
+    const handleCreateEvent = () => {
+        // Валидация
+        if (!title.trim()) {
+            alert('Пожалуйста, введите название события');
+            return;
+        }
+        if (!date) {
+            alert('Пожалуйста, выберите дату');
+            return;
+        }
+
+        // Если время не указано, устанавливаем событие на весь день
+        const eventStartTime = startTime || '00:00';
+        const eventEndTime = endTime || '23:59';
+
+        // Создаем объект события
+        const newEvent = {
+            id: Date.now().toString(),
+            title,
+            date,
+            startTime: eventStartTime,
+            endTime: eventEndTime,
+            isFullDay: !startTime || !endTime, // Флаг события на весь день
+            tagColor: selectedTags[0]?.color || '#CCCCCC',
+            emoji: selectedEmoji,
+            showInCalendar,
+            description,
+            location,
+            isTask,
+            isImportant,
+            theme
+        };
+
+        // Передаем событие родительскому компоненту
+        onCreateEvent(newEvent);
+        onClose();
+    };
 
     return (
         <div className={styles.modalOverlay}>
@@ -309,7 +363,7 @@ export default function ModalCalendar({ onClose }: ModalCalendarProps) {
                         />
                     </div>
 
-                    <button className={styles.createButton}>Создать</button>
+                    <button className={styles.createButton} onClick={handleCreateEvent}>Создать</button>
                 </div>
             </div>
         </div>
