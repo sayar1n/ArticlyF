@@ -6,13 +6,12 @@
     margin-left: 210px;
     padding: 40px;
     background-color: #f3f3f3;
-
 }
 
 .titleContainer {
     margin-top: 20px;
     margin-left: 40px;
-    width: calc(100% - 250px);
+    width: calc(100% - 350px);
     position: relative;
 }
 
@@ -27,17 +26,12 @@
     border: none;
     outline: none;
     background: transparent;
-    padding: 5px 0;
-    width: 300px;
+    padding: 5px 8px;
+    width: calc(100% - 350px);
     min-width: 300px;
 
     &::placeholder {
         color: #999;
-    }
-
-    &:hover {
-        background: rgba(55, 53, 47, 0.08);
-        border-radius: 4px;
     }
 }
 
@@ -51,29 +45,54 @@
 }
 
 .workspaceContent {
-    margin-top: 40px;
+    margin-top: 30px;
     margin-left: 40px;
-    padding: 40px;
     flex: 1;
-    min-height: calc(100vh - 100px);
-    width: calc(100% - 500px);
-    border-radius: 8px;
+    min-height: calc(100vh - 200px);
+    width: calc(100% - 350px);
     position: relative;
+    padding: 20px;
+    background-color: #f3f3f3;
 }
 
-.widgetsContainer {
+.mainWidgetsContainer {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    align-items: center;
+    gap: 2px;
+    min-height: 100%;
+    width: 100%;
+    padding-bottom: 50vh;
+    position: relative;
+    cursor: text;
 }
 
 .widgetWrapper {
     position: relative;
     user-select: none;
-    transition: transform 0.1s ease;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto;
+    padding: 5px 2px;
     
     &:hover {
         z-index: 10;
+
+        .deleteWidgetButton {
+            opacity: 1;
+        }
+    }
+
+    &:active {
+        cursor: grabbing;
+    }
+
+    &.fullWidth {
+        max-width: 100%;
+        padding: 5px 0;
     }
 }
 
@@ -114,5 +133,212 @@
     to {
         opacity: 1;
         transform: scale(1);
+    }
+}
+
+.draggableItem {
+    position: relative;
+    cursor: grab;
+
+    &.dragTop {
+        &::before {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background-color: #00A52E;
+            border-radius: 2px;
+        }
+    }
+
+    &.dragBottom {
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background-color: #00A52E;
+            border-radius: 2px;
+        }
+    }
+
+    &.dragLeft {
+        &::before {
+            content: '';
+            position: absolute;
+            left: -4px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background-color: #00A52E;
+            border-radius: 2px;
+        }
+    }
+
+    &.dragRight {
+        &::after {
+            content: '';
+            position: absolute;
+            right: -4px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background-color: #00A52E;
+            border-radius: 2px;
+        }
+    }
+
+    &:active {
+        cursor: grabbing;
+    }
+}
+
+.textInput {
+    background: transparent;
+    border: none;
+    outline: none;
+    resize: both;
+    min-width: 100px;
+    min-height: 30px;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #000;
+    padding: 4px;
+    margin: 0;
+    overflow: hidden;
+    font-family: inherit;
+    
+    &::placeholder {
+        color: #999;
+    }
+
+    &:focus {
+        background: rgba(255, 255, 255, 0.5);
+    }
+}
+
+.textBlockWrapper {
+    width: 100%;
+    max-width: 750px;
+    margin: 0 auto;
+    padding: 8px 30px;
+    min-height: 28px;
+    position: relative;
+
+    &.placeholder {
+        padding: 0;
+        min-height: 28px;
+        opacity: 0;
+        transition: opacity 0.2s ease;
+
+        &:hover {
+            opacity: 1;
+        }
+
+        textarea {
+            min-height: 28px;
+            padding: 4px 32px;
+            cursor: text;
+            
+            &::placeholder {
+                opacity: 1;
+            }
+        }
+    }
+}
+
+.textBlock {
+    width: 100%;
+    max-width: 650px;
+    min-height: 24px;
+    height: auto;
+    padding: 8px 32px;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 16px;
+    line-height: 1.5;
+    resize: none;
+    font-family: inherit;
+    overflow: hidden;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-all;
+    white-space: pre-wrap;
+    transition: all 0.2s ease;
+
+    &::placeholder {
+        color: #999;
+        opacity: 0;
+        transition: opacity 0.2s ease;
+    }
+
+    &:hover::placeholder {
+        opacity: 1;
+    }
+
+    &:focus {
+        border-left: 3px solid #e0e0e0;
+        padding-left: 29px;
+        
+        &::placeholder {
+            opacity: 1;
+        }
+    }
+}
+
+.newBlockPlaceholder {
+    height: 30px;
+    margin: 5px 0;
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, 0.03);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    span {
+        color: #666;
+        font-size: 14px;
+    }
+
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+}
+
+.deleteWidgetButton {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    background: rgba(0, 165, 46, 0.1);
+    border: 1px solid rgba(0, 165, 46, 0.2);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.2s ease;
+    z-index: 100;
+    color: #00A52E;
+    font-size: 20px;
+    padding: 0;
+
+    &:hover {
+        background: #00A52E;
+        border-color: #00A52E;
+        color: white;
+    }
+
+    &:active {
+        transform: scale(0.95);
     }
 }

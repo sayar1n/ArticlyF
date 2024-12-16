@@ -1,0 +1,166 @@
+.columnsWidget {
+    width: 100%;
+    max-width: 100% !important;
+    background-color: transparent;
+    padding: 8px;
+    margin: 0 !important;
+    position: relative;
+}
+
+.columnsHeader {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 8px;
+    width: 100%;
+
+    button {
+        padding: 4px 8px;
+        background-color: transparent;
+        color: #666;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        font-size: 14px;
+
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+            color: #333;
+        }
+    }
+}
+
+.columnsContainer {
+    display: grid;
+    gap: 5px;
+    min-height: 200px;
+    width: 100%;
+
+    &.columns2 {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    &.columns3 {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+.column {
+    background-color: transparent;
+    padding: 8px;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+    width: 100%;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.01);
+        border-color: rgba(0, 0, 0, 0.05);
+    }
+
+    &.dragOver {
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+}
+
+.blockWrapper {
+    cursor: move;
+    position: relative;
+    transition: all 0.2s ease;
+    background-color: transparent;
+    padding: 4px;
+    width: 100%;
+    max-width: 650px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    user-select: none;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+        outline: 2px solid rgba(0, 0, 0, 0.1);
+    }
+
+    &.dragging {
+        opacity: 0.5;
+    }
+
+    &[draggable="true"] {
+        cursor: grab;
+    }
+
+    &.dragBefore {
+        position: relative;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: rgba(0, 0, 0, 0.1);
+            border-radius: 1px;
+        }
+    }
+}
+
+.newBlockPlaceholder {
+    height: 24px;
+    margin: 4px 0;
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, 0.02);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 100%;
+    max-width: 650px;
+
+    span {
+        color: #666;
+        font-size: 14px;
+    }
+
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.03);
+    }
+}
+
+.deleteWidgetButton {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    background: rgba(0, 165, 46, 0.1);
+    border: 1px solid rgba(0, 165, 46, 0.2);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.2s ease;
+    z-index: 100;
+    color: #00A52E;
+    font-size: 20px;
+    padding: 0;
+
+    &:hover {
+        background: #00A52E;
+        border-color: #00A52E;
+        color: white;
+    }
+
+    &:active {
+        transform: scale(0.95);
+    }
+} 

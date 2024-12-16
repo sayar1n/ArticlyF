@@ -17,9 +17,19 @@ interface Row {
     cells: { [columnId: string]: any };
 }
 
-export default function WidgetTable() {
-    const [columns, setColumns] = useState<Column[]>([]);
-    const [rows, setRows] = useState<Row[]>([]);
+interface TableWidgetData {
+    columns: Column[];
+    rows: Row[];
+}
+
+interface WidgetTableProps {
+    data: TableWidgetData;
+    onUpdate: (data: TableWidgetData) => void;
+}
+
+export default function WidgetTable({ data, onUpdate }: WidgetTableProps) {
+    const [columns, setColumns] = useState<Column[]>(data.columns);
+    const [rows, setRows] = useState<Row[]>(data.rows);
     const [isExpanded, setIsExpanded] = useState(true);
     const [editingColumnId, setEditingColumnId] = useState<string | null>(null);
     const [editingColumn, setEditingColumn] = useState<Column | null>(null);
@@ -134,13 +144,13 @@ export default function WidgetTable() {
                 </div>
                 <div className={styles.menuContent}>
                     <button onClick={() => updateColumnType(columnId, 'text')}>
-                        <span>📝</span> Текст
+                        <span>Текст</span>
                     </button>
                     <button onClick={() => updateColumnType(columnId, 'checkbox')}>
-                        <span>☑️</span> Чекбокс
+                        <span>Чекбокс</span>
                     </button>
                     <button onClick={() => updateColumnType(columnId, 'date')}>
-                        <span>📅</span> Дата
+                        <span>Дата</span>
                     </button>
                 </div>
             </div>

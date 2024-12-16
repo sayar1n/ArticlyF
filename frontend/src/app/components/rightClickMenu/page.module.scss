@@ -1,43 +1,91 @@
-.menu {
+.contextMenu {
     position: fixed;
     background: white;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    padding: 8px 0;
+    padding: 4px 0;
     min-width: 180px;
     z-index: 1000;
     animation: fadeIn 0.15s ease-in-out;
+    transform: translate(-50%, -100%);
+    margin-top: -8px;
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: -6px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 0;
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        border-top: 6px solid white;
+    }
+}
+
+.menuItemWrapper {
+    position: relative;
 }
 
 .menuItem {
-    display: block;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
-    padding: 10px 15px;
+    padding: 6px 12px;
     text-align: left;
     border: none;
     background: none;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 13px;
     color: #333;
     transition: all 0.2s ease;
+    white-space: nowrap;
 
     &:hover {
         background-color: #f5f5f5;
         color: #000;
     }
 
-    &:active {
-        background-color: #eeeeee;
+    &.hasSubmenu {
+        padding-right: 24px;
     }
+}
+
+.submenuArrow {
+    position: absolute;
+    right: 8px;
+    font-size: 10px;
+    color: #666;
+}
+
+.submenu {
+    position: absolute;
+    left: 100%;
+    top: 0;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 4px 0;
+    min-width: 120px;
+    animation: fadeIn 0.15s ease-in-out;
+}
+
+.separator {
+    height: 1px;
+    background-color: #e0e0e0;
+    margin: 4px 0;
 }
 
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: scale(0.95);
+        transform: translate(-50%, -100%) scale(0.95);
     }
     to {
         opacity: 1;
-        transform: scale(1);
+        transform: translate(-50%, -100%) scale(1);
     }
 }
+

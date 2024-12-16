@@ -3,39 +3,50 @@
 import { useState } from 'react';
 import styles from './page.module.scss';
 
-interface Task {
-    id: string;
-    text: string;
-    completed: boolean;
+interface TaskWidgetData {
+    title: string;
+    tasks: { id: string; text: string; completed: boolean; }[];
 }
 
-export default function WidgetTasks() {
+interface WidgetTasksProps {
+    data: TaskWidgetData;
+    onUpdate: (data: TaskWidgetData) => void;
+}
+
+export default function WidgetTasks({ data, onUpdate }: WidgetTasksProps) {
     const [isExpanded, setIsExpanded] = useState(false);
-    const [title, setTitle] = useState('');
-    const [tasks, setTasks] = useState<Task[]>([]);
     const [newTask, setNewTask] = useState('');
 
     const handleAddTask = () => {
         if (newTask.trim()) {
-            setTasks([...tasks, {
-                id: Date.now().toString(),
-                text: newTask,
-                completed: false
-            }]);
+            onUpdate({
+                ...data,
+                tasks: [...data.tasks, {
+                    id: Date.now().toString(),
+                    text: newTask,
+                    completed: false
+                }]
+            });
             setNewTask('');
         }
     };
 
     const toggleTask = (taskId: string) => {
-        setTasks(tasks.map(task => 
-            task.id === taskId 
-                ? { ...task, completed: !task.completed }
-                : task
-        ));
+        onUpdate({
+            ...data,
+            tasks: data.tasks.map(task => 
+                task.id === taskId 
+                    ? { ...task, completed: !task.completed }
+                    : task
+            )
+        });
     };
 
     const deleteTask = (taskId: string) => {
-        setTasks(tasks.filter(task => task.id !== taskId));
+        onUpdate({
+            ...data,
+            tasks: data.tasks.filter(task => task.id !== taskId)
+        });
     };
 
     return (
@@ -44,8 +55,11 @@ export default function WidgetTasks() {
                 <input
                     type="text"
                     className={styles.titleInput}
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
+                    value={data.title}
+                    onChange={(e) => onUpdate({
+                        ...data,
+                        title: e.target.value
+                    })}
                     placeholder="Название виджета"
                 />
                 <div className={styles.headerControls}>
@@ -60,7 +74,7 @@ export default function WidgetTasks() {
             
             <div className={styles.content}>
                 <div className={styles.taskList}>
-                    {tasks.map(task => (
+                    {data.tasks.map(task => (
                         <div key={task.id} className={styles.taskItem}>
                             <input
                                 type="checkbox"

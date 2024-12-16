@@ -4,15 +4,19 @@
     overflow: hidden;
     margin-bottom: 20px;
     transition: all 0.3s ease-in-out;
-    width: 550px;
+    width: 450px;
     box-shadow: 0 2px 8px rgba(0, 165, 46, 0.1);
+
+    &:hover {
+        box-shadow: 0 2px 8px rgba(0, 165, 46, 0.1);
+    }
 }
 
 .header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px 30px;
+    padding: 15px 25px;
     background-color: #00A52E;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 
@@ -43,13 +47,13 @@
     .expanded & {
         max-height: 2000px;
         opacity: 1;
-        padding: 20px;
+        padding: 15px;
         padding-right: 30px;
     }
 
     .noteContent {
         width: calc(100% - 20px);
-        min-height: 150px;
+        min-height: 120px;
         padding: 15px;
         border: 1px solid rgba(0, 165, 46, 0.2);
         border-radius: 8px;
@@ -79,5 +83,34 @@
 .expanded {
     .expandButton {
         transform: rotate(180deg);
+    }
+}
+
+.deleteButton {
+    position: absolute;
+    top: -12px;
+    left: -12px;
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    background: #00A52E;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.2s ease;
+    z-index: 100;
+    color: white;
+    font-size: 20px;
+    padding: 0;
+
+    &:hover {
+        background: #008f27;
+    }
+
+    &:active {
+        transform: scale(0.95);
     }
 }

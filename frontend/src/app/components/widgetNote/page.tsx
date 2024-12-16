@@ -3,7 +3,17 @@
 import { useState } from 'react';
 import styles from './page.module.scss';
 
-export default function WidgetNote() {
+interface NoteWidgetData {
+    title: string;
+    content: string;
+}
+
+interface WidgetNoteProps {
+    data: NoteWidgetData;
+    onUpdate: (data: NoteWidgetData) => void;
+}
+
+export default function WidgetNote({ data, onUpdate }: WidgetNoteProps) {
     const [isExpanded, setIsExpanded] = useState(false);
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');

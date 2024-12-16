@@ -1,0 +1,120 @@
+.textBlockWrapper {
+    width: 100%;
+    max-width: 750px;
+    margin: 0 auto;
+    padding: 8px 30px;
+    min-height: 28px;
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    cursor: text;
+    transition: all 0.2s ease;
+
+    &:hover {
+        .dragHandle {
+            opacity: 1;
+        }
+    }
+
+    &.dragging {
+        opacity: 0.5;
+        cursor: grabbing;
+    }
+
+    &.placeholder {
+        padding: 0;
+        min-height: 28px;
+        opacity: 0;
+        transition: opacity 0.2s ease;
+
+        &:hover {
+            opacity: 1;
+        }
+
+        textarea {
+            min-height: 28px;
+            padding: 4px 32px;
+            cursor: text;
+            
+            &::placeholder {
+                opacity: 1;
+            }
+        }
+    }
+}
+
+.dragHandle {
+    position: absolute;
+    left: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    cursor: grab;
+    background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='4' cy='4' r='1' fill='%23999'/%3E%3Ccircle cx='4' cy='8' r='1' fill='%23999'/%3E%3Ccircle cx='4' cy='12' r='1' fill='%23999'/%3E%3Ccircle cx='8' cy='4' r='1' fill='%23999'/%3E%3Ccircle cx='8' cy='8' r='1' fill='%23999'/%3E%3Ccircle cx='8' cy='12' r='1' fill='%23999'/%3E%3Ccircle cx='12' cy='4' r='1' fill='%23999'/%3E%3Ccircle cx='12' cy='8' r='1' fill='%23999'/%3E%3Ccircle cx='12' cy='12' r='1' fill='%23999'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+
+    &:hover {
+        opacity: 1;
+    }
+
+    &:active {
+        cursor: grabbing;
+    }
+}
+
+.dragGhost {
+    position: fixed;
+    top: -1000px;
+    left: -1000px;
+    padding: 8px 16px;
+    background: white;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    font-size: 14px;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+.textBlock {
+    width: 100%;
+    max-width: 650px;
+    min-height: 24px;
+    height: auto;
+    padding: 8px 32px;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 16px;
+    line-height: 1.5;
+    resize: none;
+    font-family: inherit;
+    overflow: hidden;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-all;
+    white-space: pre-wrap;
+    transition: all 0.2s ease;
+
+    &::placeholder {
+        color: #999;
+        opacity: 0;
+        transition: opacity 0.2s ease;
+    }
+
+    &:hover::placeholder {
+        opacity: 1;
+    }
+
+    &:focus {
+        border-left: 3px solid #e0e0e0;
+        padding-left: 29px;
+        
+        &::placeholder {
+            opacity: 1;
+        }
+    }
+} 
