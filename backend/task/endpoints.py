@@ -12,7 +12,6 @@ from auth.security import manager, limiter  # noqa
 from core.database import get_session  # noqa
 from task.models import Task  # noqa
 from task.schemas import TaskSchema, CreateTaskRequestSchema, CreateTaskResponseSchema, UpdateTaskRequestSchema, UpdateTaskResponseSchema  # noqa
-from auth.models import User
 
 
 router = APIRouter()
@@ -134,7 +133,3 @@ async def delete_task(
         )
     return {"id": task_id}
 
-
-@router.get("/tasks")
-def get_tasks(user: User = Depends(manager)):
-    return user.tasks
