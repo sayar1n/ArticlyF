@@ -39,7 +39,7 @@ export default function SidebarMiniSet() {
                     <li className={styles.workSpace}>
                         <Link href="/WorkSpace"><img src="/images/work_space.svg" alt="work space" /></Link></li>
                     <li className={styles.tasks}>
-                        <Link href="/tasks"><img src="/images/tasks.svg" alt="tasks" /></Link>
+                        <Link href="/Tasks"><img src="/images/tasks.svg" alt="tasks" /></Link>
                     </li>
                     <li className={styles.focus}>
                         <Link href="/focusPage"><img src="/images/focus.svg" alt="focus" /></Link>
@@ -48,10 +48,32 @@ export default function SidebarMiniSet() {
             </nav>
             <div className={styles.supportZone}>
                 <div className={styles.circle}>
-                    <div className={styles.donate}><img src="/images/donate.svg" alt="donate" /></div>
+                    <div className={styles.donate}>
+                        <Link href="/Calendar/calendarPageDay">
+                            <img src="/images/work_space.svg" alt="work_space" />
+                        </Link>
+                    </div>
                 </div>
                 <div className={styles.circle}>
-                    <div className={styles.help}><img src="/images/help.svg" alt="help" /></div>
+                    <div className={styles.donate}>
+                        <Link href="/authorised/settings">
+                            <img src="/images/settings.svg" alt="settings" />
+                        </Link>
+                    </div>
+                </div>
+                <div className={styles.circle}>
+                    <div className={styles.donate}>
+                        <Link href="/donate">
+                            <img src="/images/donate.svg" alt="donate" />
+                        </Link>
+                    </div>
+                </div>
+                <div className={styles.circle}>
+                    <div className={styles.help}>
+                        <Link href="/help">
+                            <img src="/images/help.svg" alt="help" />
+                        </Link>
+                    </div>
                 </div>
                 <div className={styles.line}></div>
                 <div className={styles.profile}>

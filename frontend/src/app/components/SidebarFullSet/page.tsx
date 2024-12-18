@@ -22,8 +22,8 @@ export default function SidebarFullSet() {
 
     return (
         <div className={`${styles.sidebar} ${isCollapsing ? styles.collapsing : ''}`}>
-            <div 
-                className={styles.sidebarFull} 
+            <div
+                className={styles.sidebarFull}
                 onClick={handleToggle}
                 role="button"
                 tabIndex={0}
@@ -79,28 +79,36 @@ export default function SidebarFullSet() {
                 </ul>
             </nav>
             <div className={styles.supportZone}>
+                <div className={styles.workSpaceBlock}>
+                    <Link href="/Calendar/calendarPageDay" className={styles.link}>
+                        <div className={styles.circle}>
+                            <div className={styles.donate}><img src="/images/work_space.svg" alt="work_space" /></div>
+                        </div>
+                        Рабочая зона
+                    </Link>
+                </div>
                 <div className={styles.donateBlock}>
-                    <div className={styles.circle}>
-                        <div className={styles.donate}><img src="/images/donate.svg" alt="donate" /></div>
-                    </div>
                     <Link href="/donate" className={styles.link}>
+                        <div className={styles.circle}>
+                            <div className={styles.donate}><img src="/images/donate.svg" alt="donate" /></div>
+                        </div>
                         Поддержать
                     </Link>
                 </div>
                 <div className={styles.helpBlock}>
-                    <div className={styles.circle}>
-                        <div className={styles.help}><img src="/images/help.svg" alt="help" /></div>
-                    </div>
                     <Link href="/help" className={styles.link}>
+                        <div className={styles.circle}>
+                            <div className={styles.help}><img src="/images/help.svg" alt="help" /></div>
+                        </div>
                         Помощь
                     </Link>
                 </div>
                 <div className={styles.line}></div>
                 <div className={styles.profileBlock}>
-                    <div className={styles.profile}>
-                        <div className={styles.circle}>A</div>
-                    </div>
                     <Link href="/profile" className={styles.link}>
+                        <div className={styles.profile}>
+                            <div className={styles.circle}>A</div>
+                        </div>
                         Профиль
                     </Link>
                 </div>

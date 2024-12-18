@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import styles from "./page.module.scss";
-import SidebarMini from '../components/SidebarMini/page';
+import SidebarFull from '../components/SidebarFull/page';
 
 export default function FocusPage() {
     const [timeRemaining, setTimeRemaining] = useState<number>(0);
@@ -18,6 +18,8 @@ export default function FocusPage() {
     const lastRunningTime = useRef<number>(0);
     const [isShopOpen, setIsShopOpen] = useState<boolean>(false);
     const [selectedCat, setSelectedCat] = useState<string>("./images/cat_focus.png");
+    const extendedTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+    const isPressedRef = useRef(false);
 
     const shopItems = [
         { id: 1, image: "./images/focus_dog.jpg", price: 10 },
@@ -57,7 +59,7 @@ export default function FocusPage() {
         if (timeRemaining > 0) {
             setIsRunning(true);
             lastRunningTime.current = timeRemaining; // Сохраняем начальное время
-            
+
             if (countdownRef.current) {
                 clearInterval(countdownRef.current);
             }
@@ -70,26 +72,26 @@ export default function FocusPage() {
                         if (countdownRef.current) {
                             clearInterval(countdownRef.current);
                         }
-                        
+
                         // Подсчитываем все время, включая текущую сессию
                         const timeSpent = lastRunningTime.current;
                         const totalSeconds = accumulatedTime + timeSpent;
                         const totalMinutes = Math.floor(totalSeconds / 60);
-                        
+
                         if (totalMinutes > 0) {
                             const earnedCoins = calculateCoins(totalMinutes);
                             setCoins(prev => prev + earnedCoins);
-                            
+
                             setRecentSessions(prev => [{
                                 minutes: totalMinutes,
                                 coins: earnedCoins
                             }, ...prev].slice(0, 10));
                         }
-                        
+
                         // Сбрасываем аккумулированное время
                         setAccumulatedTime(0);
                         lastRunningTime.current = 0;
-                        
+
                         return 0;
                     }
                     return prev - 1;
@@ -98,100 +100,113 @@ export default function FocusPage() {
         }
     };
 
-    const handlePlusStart = () => {
+    const handlePlusStart = (event: React.MouseEvent) => {
+        if (event.button !== 0) return;
+        
+        isPressedRef.current = true;
         wasLongPress.current = false;
+
         pressTimeoutRef.current = setTimeout(() => {
+            if (!isPressedRef.current) return;
+            
             wasLongPress.current = true;
-            // +5 минут
             intervalRef.current = setInterval(() => {
-                setTimeRemaining(prev => {
+                setTimeRemaining((prev) => {
                     const newMinutes = Math.floor(prev / 60) + 5;
                     const hours = Math.floor(newMinutes / 60);
                     if (hours >= 99) return prev;
                     return newMinutes * 60;
                 });
             }, 400);
-
-            // +10 минут
-            setTimeout(() => {
-                if (intervalRef.current) {
-                    clearInterval(intervalRef.current);
-                }
-                intervalRef.current = setInterval(() => {
-                    setTimeRemaining(prev => {
-                        const newMinutes = Math.floor(prev / 60) + 10;
-                        const hours = Math.floor(newMinutes / 60);
-                        if (hours >= 99) return prev;
-                        return newMinutes * 60;
-                    });
-                }, 400);
-            }, 2500);
         }, 500);
+
+        extendedTimeoutRef.current = setTimeout(() => {
+            if (!isPressedRef.current) return;
+            
+            if (intervalRef.current) clearInterval(intervalRef.current);
+            intervalRef.current = setInterval(() => {
+                setTimeRemaining((prev) => {
+                    const newMinutes = Math.floor(prev / 60) + 10;
+                    const hours = Math.floor(newMinutes / 60);
+                    if (hours >= 99) return prev;
+                    return newMinutes * 60;
+                });
+            }, 400);
+        }, 3000);
     };
 
-    const handleMinusStart = () => {
+    const handleMinusStart = (event: React.MouseEvent) => {
+        if (event.button !== 0) return;
+        
+        isPressedRef.current = true;
         wasLongPress.current = false;
+
         pressTimeoutRef.current = setTimeout(() => {
+            if (!isPressedRef.current) return;
+            
             wasLongPress.current = true;
-            // -5 минут
             intervalRef.current = setInterval(() => {
-                setTimeRemaining(prev => {
+                setTimeRemaining((prev) => {
                     const newMinutes = Math.floor(prev / 60) - 5;
                     return Math.max(0, newMinutes * 60);
                 });
             }, 400);
-
-            // -10 минут
-            setTimeout(() => {
-                if (intervalRef.current) {
-                    clearInterval(intervalRef.current);
-                }
-                intervalRef.current = setInterval(() => {
-                    setTimeRemaining(prev => {
-                        const newMinutes = Math.floor(prev / 60) - 10;
-                        return Math.max(0, newMinutes * 60);
-                    });
-                }, 400);
-            }, 2500);
         }, 500);
+
+        extendedTimeoutRef.current = setTimeout(() => {
+            if (!isPressedRef.current) return;
+            
+            if (intervalRef.current) clearInterval(intervalRef.current);
+            intervalRef.current = setInterval(() => {
+                setTimeRemaining((prev) => {
+                    const newMinutes = Math.floor(prev / 60) - 10;
+                    return Math.max(0, newMinutes * 60);
+                });
+            }, 400);
+        }, 3000);
     };
 
-    const handlePressEnd = () => {
-        // Сохраняем текущее значение wasLongPress
-        const wasLong = wasLongPress.current;
+    const handlePressEnd = (e: React.MouseEvent) => {
+        // Если кнопка не была нажата изначально, игнорируем
+        if (!isPressedRef.current) return;
+        
+        isPressedRef.current = false;
 
         if (pressTimeoutRef.current) {
             clearTimeout(pressTimeoutRef.current);
+            pressTimeoutRef.current = null;
         }
+
+        if (extendedTimeoutRef.current) {
+            clearTimeout(extendedTimeoutRef.current);
+            extendedTimeoutRef.current = null;
+        }
+
         if (intervalRef.current) {
             clearInterval(intervalRef.current);
+            intervalRef.current = null;
         }
 
-        // Если это было короткое нажатие, выполняем клик
-        if (!wasLong) {
-            wasLongPress.current = false;
-        }
-    };
-
-    const handlePlusClick = () => {
+        // Если это было короткое нажатие
         if (!wasLongPress.current) {
-            setTimeRemaining(prev => {
-                const newMinutes = Math.floor(prev / 60) + 1;
-                const hours = Math.floor(newMinutes / 60);
-                if (hours >= 99) return prev;
-                return newMinutes * 60;
-            });
+            if (e.currentTarget.textContent === '+') {
+                setTimeRemaining(prev => {
+                    const newMinutes = Math.floor(prev / 60) + 1;
+                    const hours = Math.floor(newMinutes / 60);
+                    if (hours >= 99) return prev;
+                    return newMinutes * 60;
+                });
+            } else if (e.currentTarget.textContent === '-') {
+                setTimeRemaining(prev => {
+                    const newMinutes = Math.floor(prev / 60) - 1;
+                    return Math.max(0, newMinutes * 60);
+                });
+            }
         }
+
+        wasLongPress.current = false;
     };
 
-    const handleMinusClick = () => {
-        if (!wasLongPress.current) {
-            setTimeRemaining(prev => {
-                const newMinutes = Math.floor(prev / 60) - 1;
-                return Math.max(0, newMinutes * 60);
-            });
-        }
-    };
     const calculateCoins = (minutes: number) => {
         // Конвертируем минуты в секунды и делим на 30 секунд
         return Math.floor((minutes * 60) / 30) * 2;
@@ -203,7 +218,7 @@ export default function FocusPage() {
                 // При паузе сохраняем накопленное время
                 const timeSpent = lastRunningTime.current - timeRemaining;
                 setAccumulatedTime(prev => prev + timeSpent);
-                
+
                 if (countdownRef.current) {
                     clearInterval(countdownRef.current);
                 }
@@ -227,19 +242,19 @@ export default function FocusPage() {
         }
 
         if (isRunning || accumulatedTime > 0) {
-            // Подсчитываем финальное время
-            const finalAccumulatedSeconds = isRunning 
+            // одсчитываем финальное время
+            const finalAccumulatedSeconds = isRunning
                 ? accumulatedTime + (lastRunningTime.current - timeRemaining)
                 : accumulatedTime;
-            
+
             // Подсчитываем количество полных 30-секундных интервалов
             const completedIntervals = calculateCompletedIntervals(finalAccumulatedSeconds);
-            
+
             if (completedIntervals > 0) {
                 // За каждые 30 секунд начисляем 2 монеты
                 const earnedCoins = completedIntervals * 2;
                 setCoins(prev => prev + earnedCoins);
-                
+
                 // Добавляем сессию в историю (конвертируем секунды в минуты для отображения)
                 setRecentSessions(prev => [{
                     minutes: Math.floor(finalAccumulatedSeconds / 60),
@@ -265,9 +280,9 @@ export default function FocusPage() {
 
     // Добавим сохранение состояния при перезагрузке
     useEffect(() => {
-        // Сохраняем состоя��ие каждую секунду, если таймер запущен
+        // Сохраняем состояние каждую секунду, если таймер запущен
         let saveInterval: NodeJS.Timeout | null = null;
-        
+
         if (isRunning) {
             saveInterval = setInterval(() => {
                 const currentState = {
@@ -294,20 +309,20 @@ export default function FocusPage() {
             const state = JSON.parse(savedState);
             const elapsedTime = Math.floor((Date.now() - state.startTime) / 1000);
             const totalSeconds = state.accumulatedTime + elapsedTime;
-            
+
             // Проверяем, были ли пройдены 30-секундные интервалы
             const completedIntervals = calculateCompletedIntervals(totalSeconds);
-            
+
             if (completedIntervals > 0) {
                 const earnedCoins = completedIntervals * 2;
                 setCoins(prev => prev + earnedCoins);
-                
+
                 setRecentSessions(prev => [{
                     minutes: Math.floor(totalSeconds / 60),
                     coins: earnedCoins
                 }, ...prev].slice(0, 10));
             }
-            
+
             // Очищаем сохраненное состояние
             localStorage.removeItem('timerState');
         }
@@ -318,7 +333,7 @@ export default function FocusPage() {
 
     return (
         <div className={styles.container}>
-            <SidebarMini />
+            <SidebarFull />
             <div className={styles.shopContainer}>
                 <div className={styles.headerRow}>
                     <div className={styles.shopHeader} onClick={() => setIsShopOpen(true)}>
@@ -344,8 +359,8 @@ export default function FocusPage() {
 
                 <div className={`${styles.recentContainer} ${isCollapsed ? styles.collapsed : ''}`}>
                     <div className={styles.recentHeader}>
-                        <button 
-                            className={styles.toggleButton} 
+                        <button
+                            className={styles.toggleButton}
                             onClick={handleToggleCollapse}
                         >
                             <span>{isCollapsed ? '≡' : '≡'}</span>
@@ -379,7 +394,6 @@ export default function FocusPage() {
             <div className={styles.timerContainer}>
                 <button
                     className={styles.controlButton}
-                    onClick={handleMinusClick}
                     onMouseDown={handleMinusStart}
                     onMouseUp={handlePressEnd}
                     onMouseLeave={handlePressEnd}
@@ -397,7 +411,6 @@ export default function FocusPage() {
 
                 <button
                     className={styles.controlButton}
-                    onClick={handlePlusClick}
                     onMouseDown={handlePlusStart}
                     onMouseUp={handlePressEnd}
                     onMouseLeave={handlePressEnd}
@@ -425,7 +438,7 @@ export default function FocusPage() {
             {isShopOpen && (
                 <div className={styles.modalOverlay}>
                     <div className={styles.modalContent}>
-                        <button 
+                        <button
                             className={styles.closeButton}
                             onClick={() => setIsShopOpen(false)}
                         >
@@ -435,27 +448,27 @@ export default function FocusPage() {
                         <div className={styles.shopItems}>
                             {shopItems.map(item => (
                                 <div key={item.id} className={styles.shopItem}>
-                                    <img 
-                                        src={item.image} 
-                                        alt={`Cat ${item.id}`} 
+                                    <img
+                                        src={item.image}
+                                        alt={`Cat ${item.id}`}
                                         className={styles.shopItemImage}
                                     />
-                                    <button 
+                                    <button
                                         className={styles.buyButton}
                                         onClick={() => handleBuyCat(item.image, item.price)}
                                         disabled={coins < item.price}
                                     >
                                         <span>{item.price}</span>
-                                        <img 
-                                            src="./images/focus_money.svg" 
-                                            alt="Coins" 
+                                        <img
+                                            src="./images/focus_money.svg"
+                                            alt="Coins"
                                             className={styles.smallCoinIcon}
                                         />
                                     </button>
                                 </div>
                             ))}
                         </div>
-                        <button 
+                        <button
                             className={styles.resetButton}
                             onClick={() => {
                                 setSelectedCat(DEFAULT_CAT_IMAGE);

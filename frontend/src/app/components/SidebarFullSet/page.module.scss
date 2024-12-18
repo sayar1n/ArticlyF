@@ -106,7 +106,7 @@
         margin-left: -20px;
     }
 
-    .donateBlock, .helpBlock, .profileBlock {
+    .donateBlock, .helpBlock, .profileBlock, .workSpaceBlock {
         display: flex;
         align-items: center;
         gap: 12px;
@@ -132,7 +132,7 @@
 
 // Более мягкая анимация для контента
 .navigation, .supportZone {
-    li, .donateBlock, .helpBlock, .profileBlock {
+    li, .donateBlock, .helpBlock, .profileBlock, .workSpaceBlock {
         transition: opacity 0.3s ease-in-out;
     }
 }
