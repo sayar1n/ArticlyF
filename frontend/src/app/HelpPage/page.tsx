@@ -1,6 +1,7 @@
 "use client"
 
 import styles from "./page.module.scss"
+import { useRouter } from 'next/navigation'
 
 interface HelpItem {
     title: string;
@@ -8,6 +9,12 @@ interface HelpItem {
 }
 
 export default function HelpPage() {
+    const router = useRouter();
+
+    const handleBack = () => {
+        router.back();
+    };
+
     const gettingStarted: HelpItem[] = [
         {
             title: "Начало работы с Articly",
@@ -61,7 +68,7 @@ export default function HelpPage() {
         },
         {
             title: "Уведомления",
-            description: "Настройте уведомления о предстоящих задачах, дедлайнах и важных событиях."
+            description: "Настройте уведомления о предстоящих за��ачах, дедлайнах и важных событиях."
         },
     ];
 
@@ -77,7 +84,12 @@ export default function HelpPage() {
 
     return (
         <div className={styles.container}>
-            <h1>Поддержка</h1>
+            <div className={styles.header}>
+                <button onClick={handleBack} className={styles.backButton}>
+                    ←
+                </button>
+                <h1>Поддержка</h1>
+            </div>
 
             <div className={styles.helpSection}>
                 <h2>Начало работы</h2>
@@ -93,7 +105,6 @@ export default function HelpPage() {
                 <h2>Продуктивность</h2>
                 {renderHelpItems(productivity)}
             </div>
-
         </div>
     );
 }

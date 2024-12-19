@@ -9,16 +9,15 @@
     align-items: flex-end;
     padding-left: 220px;
     padding-bottom: 20px;
-    z-index: 999999;
+    z-index: 2147483647;
 }
 
 .modalContent {
-    background: white;
+    background: #ffffff;
     border-radius: 12px;
     width: 280px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     overflow: hidden;
-    z-index: 1000000;
 }
 
 .profileHeader {

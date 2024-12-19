@@ -7,7 +7,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function SignUp() {
-  const [nickname, setNickname] = useState("");
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -25,7 +25,7 @@ export default function SignUp() {
     e.preventDefault();
     try {
       const response = await api.post("/auth/register", {
-        nickname,
+        username,
         email,
         password,
       });
@@ -69,8 +69,8 @@ export default function SignUp() {
                 type="text"
                 className={styles.nicknameInputBox}
                 placeholder="Ваш никнейм"
-                value={nickname}
-                onChange={(e) => setNickname(e.target.value)}
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
                 required
               />
             </div>

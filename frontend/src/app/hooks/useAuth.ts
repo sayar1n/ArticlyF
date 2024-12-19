@@ -19,7 +19,7 @@ export const useAuth = () => {
   const login = (token: string) => {
     localStorage.setItem('token', token);
     setIsAuthenticated(true);
-    router.push('/authorised/dashboard');
+    router.push('/Calendar/calendarPageDay');
   };
 
   const logout = () => {

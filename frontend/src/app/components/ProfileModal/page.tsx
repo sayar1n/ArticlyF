@@ -3,6 +3,8 @@
 import React from 'react';
 import Link from 'next/link';
 import styles from './page.module.scss';
+import axios from 'axios';
+import { useRouter } from 'next/navigation';
 
 interface ProfileModalProps {
     isOpen: boolean;
@@ -11,6 +13,30 @@ interface ProfileModalProps {
 }
 
 export default function ProfileModal({ isOpen, onClose, userName }: ProfileModalProps) {
+    const router = useRouter();
+    
+    const handleLogout = async () => {
+        try {
+            // Удаляем токен из localStorage
+            localStorage.removeItem('access_token');
+            
+            // Очищаем куки если они используются
+            document.cookie = 'access_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+            
+            // Перенаправляем на страницу входа
+            router.push('/auth/signIn');
+            
+            onClose();
+        } catch (error) {
+            console.error('Ошибка при выходе:', error);
+        }
+    };
+
+    const handleAddAccount = () => {
+        router.push('/auth/signIn');
+        onClose();
+    };
+
     if (!isOpen) return null;
 
     return (
@@ -37,14 +63,14 @@ export default function ProfileModal({ isOpen, onClose, userName }: ProfileModal
                         <span>Пригласить друга</span>
                     </button>
                     
-                    <button className={styles.menuItem}>
+                    <button className={styles.menuItem} onClick={handleAddAccount}>
                         <img src="/images/add_acc.svg" alt="Add account" />
                         <span>Добавить аккаунт</span>
                     </button>
                     
                     <div className={styles.divider}></div>
                     
-                    <button className={styles.menuItem}>
+                    <button className={styles.menuItem} onClick={handleLogout}>
                         <img src="/images/log_out.svg" alt="Logout" />
                         <span>Выйти</span>
                     </button>
