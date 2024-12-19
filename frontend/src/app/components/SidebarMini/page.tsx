@@ -72,7 +72,7 @@ export default function SidebarMiniSet() {
                 </div>
                 <div className={styles.circle}>
                     <div className={styles.help}>
-                        <Link href="/help">
+                        <Link href="/HelpPage">
                             <img src="/images/help.svg" alt="help" />
                         </Link>
                     </div>

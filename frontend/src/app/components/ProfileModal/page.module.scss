@@ -4,13 +4,12 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(228, 228, 228, 0.3);
     display: flex;
     justify-content: flex-start;
     align-items: flex-end;
     padding-left: 220px;
     padding-bottom: 20px;
-    z-index: 1000;
+    z-index: 999999;
 }
 
 .modalContent {
@@ -19,6 +18,7 @@
     width: 280px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     overflow: hidden;
+    z-index: 1000000;
 }
 
 .profileHeader {

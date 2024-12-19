@@ -33,7 +33,7 @@ export default function SidebarMini() {
             <div className={styles.logo}>A</div>
             <nav className={styles.navigation}>
                 <ul>
-                <li className={styles.calendar}>
+                    <li className={styles.calendar}>
                         <Link href="/settings/user" className={styles.link}>
                             <img src="/images/user_set.svg" alt="user" />
                         </Link>
@@ -75,7 +75,9 @@ export default function SidebarMini() {
                     <div className={styles.donate}><img src="/images/donate.svg" alt="donate" /></div>
                 </div>
                 <div className={styles.circle}>
-                    <div className={styles.help}><img src="/images/help.svg" alt="help" /></div>
+                    <Link href="/HelpPage">
+                        <img src="/images/help.svg" alt="help" />
+                    </Link>
                 </div>
                 <div className={styles.line}></div>
                 <div className={styles.profile}>

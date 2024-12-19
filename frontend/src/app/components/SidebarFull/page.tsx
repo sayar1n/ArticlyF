@@ -80,7 +80,7 @@ export default function SidebarFull() {
                     </Link>
                 </div>
                 <div className={styles.helpBlock}>
-                    <Link href="/help" className={styles.link}>
+                    <Link href="/HelpPage" className={styles.link}>
                         <div className={styles.circle}>
                             <div className={styles.help}><img src="/images/help.svg" alt="help" /></div>
                         </div>
