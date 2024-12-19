@@ -82,6 +82,7 @@ export default function UserSettings() {
                         <option value="en">English</option>
                     </select>
                 </div>
+
             </div>
 
             <button className={styles['submit-button']}>
