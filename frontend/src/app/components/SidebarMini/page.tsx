@@ -4,10 +4,12 @@ import Link from 'next/link';
 import styles from './page.module.scss';
 import { useState } from 'react';
 import SidebarFull from '../SidebarFull/page';
+import ProfileModal from '../ProfileModal/page';
 
 export default function SidebarMiniSet() {
     const [isExpanding, setIsExpanding] = useState(false);
     const [showFull, setShowFull] = useState(false);
+    const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
 
     const handleToggle = () => {
         setIsExpanding(true);
@@ -56,7 +58,7 @@ export default function SidebarMiniSet() {
                 </div>
                 <div className={styles.circle}>
                     <div className={styles.donate}>
-                        <Link href="/authorised/settings">
+                        <Link href="/settings/user">
                             <img src="/images/settings.svg" alt="settings" />
                         </Link>
                     </div>
@@ -76,10 +78,15 @@ export default function SidebarMiniSet() {
                     </div>
                 </div>
                 <div className={styles.line}></div>
-                <div className={styles.profile}>
+                <div className={styles.profile} onClick={() => setIsProfileModalOpen(true)}>
                     <div className={styles.circle}>A</div>
                 </div>
             </div>
+            <ProfileModal 
+                isOpen={isProfileModalOpen}
+                onClose={() => setIsProfileModalOpen(false)}
+                userName="Alex"
+            />
         </div>
     );
 }

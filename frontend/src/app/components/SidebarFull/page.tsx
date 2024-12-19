@@ -4,10 +4,12 @@ import Link from 'next/link';
 import styles from './page.module.scss';
 import { useState } from 'react';
 import SidebarMini from '../SidebarMini/page';
+import ProfileModal from '../ProfileModal/page';
 
 export default function SidebarFull() {
     const [isCollapsing, setIsCollapsing] = useState(false);
     const [showMini, setShowMini] = useState(false);
+    const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
 
     const handleToggle = () => {
         setIsCollapsing(true);
@@ -62,7 +64,7 @@ export default function SidebarFull() {
             </nav>
             <div className={styles.supportZone}>
                 <div className={styles.settingsBlock}>
-                    <Link href="/authorised/settings/user" className={styles.link}>
+                    <Link href="/settings/user" className={styles.link}>
                         <div className={styles.circle}>
                             <div className={styles.donate}><img src="/images/settings.svg" alt="settings" /></div>
                         </div>
@@ -86,15 +88,18 @@ export default function SidebarFull() {
                     </Link>
                 </div>
                 <div className={styles.line}></div>
-                <div className={styles.profileBlock}>
-                    <Link href="/profile" className={styles.link}>
-                        <div className={styles.profile}>
-                            <div className={styles.circle}>A</div>
-                        </div>
-                        Профиль
-                    </Link>
+                <div className={styles.profileBlock} onClick={() => setIsProfileModalOpen(true)}>
+                    <div className={styles.profile}>
+                        <div className={styles.circle}>A</div>
+                    </div>
+                    Профиль
                 </div>
             </div>
+            <ProfileModal
+                isOpen={isProfileModalOpen}
+                onClose={() => setIsProfileModalOpen(false)}
+                userName="Alex"
+            />
         </div>
     );
 }
