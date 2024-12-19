@@ -1,0 +1,13 @@
+.settingsLayout {
+    display: flex;
+    min-height: 100vh;
+    background-color: #fff;
+}
+
+.content {
+    flex: 1;
+    margin-left: 210px;
+    padding: 20px;
+    max-width: 800px;
+    margin-left: calc((100% - 800px - 210px) / 2 + 210px);
+}

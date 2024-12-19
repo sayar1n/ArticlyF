@@ -34,37 +34,37 @@ export default function SidebarMini() {
             <nav className={styles.navigation}>
                 <ul>
                 <li className={styles.calendar}>
-                        <Link href="/authorised/settings/user" className={styles.link}>
+                        <Link href="/settings/user" className={styles.link}>
                             <img src="/images/user_set.svg" alt="user" />
                         </Link>
                     </li>
                     <li className={styles.workSpace}>
-                        <Link href="/authorised/settings/security" className={styles.link}>
+                        <Link href="/settings/security" className={styles.link}>
                             <img src="/images/safety_set.svg" alt="safety" />
                         </Link>
                     </li>
                     <li className={styles.tasks}>
-                        <Link href="/authorised/settings/privacy" className={styles.link}>
+                        <Link href="/settings/privacy" className={styles.link}>
                             <img src="/images/privicy_set.svg" alt="privacy" />
                         </Link>
                     </li>
                     <li className={styles.focus}>
-                        <Link href="/authorised/settings/notifications" className={styles.link}>
+                        <Link href="/settings/notifications" className={styles.link}>
                             <img src="/images/feeds_set.svg" alt="feed" />
                         </Link>
                     </li>
                     <li className={styles.focus}>
-                        <Link href="/authorised/settings/design" className={styles.link}>
+                        <Link href="/settings/design" className={styles.link}>
                             <img src="/images/color_set.svg" alt="color" />
                         </Link>
                     </li>
                     <li className={styles.focus}>
-                        <Link href="/authorised/settings/subscription" className={styles.link}>
+                        <Link href="/settings/subscription" className={styles.link}>
                             <img src="/images/sub_set.svg" alt="subscription" />
                         </Link>
                     </li>
                     <li className={styles.focus}>
-                        <Link href="/authorised/settings/feedback" className={styles.link}>
+                        <Link href="/settings/feedback" className={styles.link}>
                             <img src="/images/feedback_set.svg" alt="feedback" />
                         </Link>
                     </li>

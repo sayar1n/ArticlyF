@@ -27,7 +27,7 @@ export default function ProfileModal({ isOpen, onClose, userName }: ProfileModal
                 </div>
                 
                 <div className={styles.menuItems}>
-                    <Link href="/settings" className={styles.menuItem}>
+                    <Link href="/settings/user" className={styles.menuItem}>
                         <img src="/images/settings.svg" alt="Settings" />
                         <span>Настройки</span>
                     </Link>
