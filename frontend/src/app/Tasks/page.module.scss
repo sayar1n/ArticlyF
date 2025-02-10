@@ -3,7 +3,7 @@
     min-height: 100vh;
     margin-left: 210px;
     padding: 40px;
-    background-color: #992424;
+    background-color: var(--bg-color);
 }
 
 .placeholder {
@@ -11,7 +11,7 @@
     justify-content: center;
     align-items: center;
     height: calc(100vh - 80px);
-    color: #666;
+    color: var(--text-secondary);
     font-size: 16px;
 }
 
@@ -23,8 +23,8 @@
 
 .sidebar {
     width: 190px;
-    background: #fff;
-    border-right: 1px solid #eee;
+    background: var(--bg-secondary);
+    border-right: 1px solid var(--border-color);
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -39,7 +39,7 @@
     h2 {
         margin: 0;
         font-size: 18px;
-        color: #333;
+        color: var(--text-color);
     }
 }
 
@@ -48,7 +48,7 @@
     height: 30px;
     border-radius: 50%;
     border: none;
-    background: #00BA34;
+    background: var(--highlight-primary);
     color: white;
     font-size: 20px;
     cursor: pointer;
@@ -58,7 +58,7 @@
     transition: background-color 0.2s;
 
     &:hover {
-        background: #00A52E;
+        background: var(--highlight-primary-hover);
     }
 }
 
@@ -76,9 +76,10 @@
     align-items: center;
     cursor: pointer;
     transition: all 0.2s;
+    color: var(--text-color);
 
     &:hover {
-        background: rgba(0, 186, 52, 0.05);
+        background: var(--highlight-secondary);
 
         .deletePageButton {
             opacity: 1;
@@ -86,20 +87,23 @@
     }
 
     &.selected {
-        background: rgba(0, 186, 52, 0.1);
-        color: #00A52E;
+        background: var(--highlight-secondary);
+        color: var(--highlight-primary);
     }
 
     input {
         width: 100%;
         padding: 5px;
-        border: 1px solid #ddd;
+        border: 1px solid var(--border-color);
         border-radius: 4px;
         font-size: 14px;
+        background-color: var(--input-bg);
+        color: var(--input-text);
 
         &:focus {
             outline: none;
-            border-color: #00BA34;
+            border-color: var(--highlight-primary);
+            background-color: var(--input-focus-bg);
         }
     }
 }
@@ -109,8 +113,8 @@
     height: 24px;
     border-radius: 4px;
     border: none;
-    background: rgba(220, 53, 69, 0.1);
-    color: #dc3545;
+    background: var(--highlight-danger);
+    color: white;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -119,14 +123,14 @@
     transition: all 0.2s;
 
     &:hover {
-        background: #dc3545;
-        color: white;
+        background: var(--highlight-danger);
+        opacity: 0.8;
     }
 }
 
 .content {
     flex: 1;
-    background: #f5f5f5;
+    background: var(--bg-color);
     padding: 20px;
     overflow-y: auto;
 }
@@ -136,6 +140,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #666;
+    color: var(--text-secondary);
     font-size: 16px;
 }

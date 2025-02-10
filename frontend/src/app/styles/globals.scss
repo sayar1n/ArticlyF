@@ -3,6 +3,80 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
 
+:root {
+  --bg-color: white;
+  --text-color: black;
+  --bg-secondary: #f5f5f5;
+  --border-color: #e0e0e0;
+  --text-secondary: #666;
+
+  // Добавляем цвета для выделений
+  --highlight-primary: #4CAF50;
+  --highlight-primary-hover: #45a049;
+  --highlight-secondary: #E8F5E9;
+  --highlight-danger: #f44336;
+  --highlight-border: rgba(0, 0, 0, 0.1);
+
+  // Добавляем цвета для инпутов
+  --input-bg: #f5f5f5;
+  --input-border: #e0e0e0;
+  --input-text: #333;
+  --input-placeholder: #666;
+  --input-focus-bg: #fff;
+  --input-focus-border: #4CAF50;
+
+  // Добавляем переменные для модаль��ых окон и чата
+  --modal-overlay: rgba(0, 0, 0, 0.5);
+  --modal-bg: white;
+  --chat-bg: #E8F5E9;
+  --message-user-bg: #4CAF50;
+  --message-support-bg: white;
+  --message-user-text: white;
+  --message-support-text: #333;
+
+  // Добавляем переменные для форм авторизации
+  --auth-form-bg: #ffffff;
+  --auth-shadow: rgba(0, 0, 0, 0.3);
+  --auth-logo: #005244;
+}
+
+.dark {
+  --bg-color: #252323;
+  --text-color: white;
+  --bg-secondary: #2d2d2d;
+  --border-color: #404040;
+  --text-secondary: #a0a0a0;
+
+  // Цвета выделений для темной темы
+  --highlight-primary: #66bb6a;
+  --highlight-primary-hover: #81c784;
+  --highlight-secondary: #1b5e20;
+  --highlight-danger: #ef5350;
+  --highlight-border: rgba(255, 255, 255, 0.1);
+
+  // Цвета инпутов для темной темы
+  --input-bg: #2d2d2d;
+  --input-border: #404040;
+  --input-text: #ffffff;
+  --input-placeholder: #888;
+  --input-focus-bg: #363636;
+  --input-focus-border: #66bb6a;
+
+  // Переменные для темной темы
+  --modal-overlay: rgba(0, 0, 0, 0.7);
+  --modal-bg: #2d2d2d;
+  --chat-bg: #1b5e20;
+  --message-user-bg: #66bb6a;
+  --message-support-bg: #363636;
+  --message-user-text: white;
+  --message-support-text: #e0e0e0;
+
+  // Переменные для темной темы форм авторизации
+  --auth-form-bg: #2d2d2d;
+  --auth-shadow: rgba(0, 0, 0, 0.5);
+  --auth-logo: #66bb6a;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -11,6 +85,8 @@ body {
   font-family: "JetBrains Mono", monospace;
   font-family: "Nunito Sans", sans-serif;
   font-optical-sizing: auto;
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 
 // Font weights

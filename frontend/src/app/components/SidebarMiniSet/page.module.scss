@@ -3,7 +3,7 @@
     flex-direction: column;
     width: 66px;
     height: 100vh;
-    background-color: #F3F4F6;
+    background-color: var(--bg-secondary);
     position: fixed;
     left: 0;
     top: 0;
@@ -12,7 +12,7 @@
 
     &.expanding {
         width: 210px;
-        
+
         .logo {
             font-size: 24px;
             letter-spacing: 0.3em;
@@ -44,7 +44,7 @@
     width: 100%;
     opacity: 0;
     transition: opacity 0.3s ease;
-    
+
     .expanded & {
         opacity: 1;
     }
@@ -65,7 +65,7 @@
     font-family: "JetBrains Mono", monospace;
     font-size: 64px;
     font-weight: 500;
-    color: #005244;
+    color: var(--highlight-primary);
     margin-bottom: 37px;
     text-align: center;
     width: 100%;
@@ -103,7 +103,7 @@
     transition: all 0.3s ease-in-out;
 
     .line {
-        border-top: 2px solid #DEDEDE;
+        border-top: 2px solid var(--border-color);
         width: 210px;
         margin-left: -20px;
     }
@@ -112,10 +112,11 @@
         width: 30px;
         height: 30px;
         border-radius: 50%;
-        background-color: #D9D9D9;
+        background-color: var(--input-bg);
         display: flex;
         align-items: center;
         justify-content: center;
+        color: var(--text-color);
     }
 }
 

@@ -10,6 +10,8 @@ $font-family: 'Nunito Sans', sans-serif;
     align-items: center;
     width: 100%;
     position: relative;
+    background-color: var(--bg-color);
+    color: var(--text-color);
 }
 
 .catImage {
@@ -37,13 +39,13 @@ $font-family: 'Nunito Sans', sans-serif;
         border-radius: 50%;
         border: none;
         background-color: transparent;
-        color: $black;
+        color: var(--text-color);
         font-size: 2.5rem;
         cursor: pointer;
         display: flex;
         align-items: center;
         justify-content: center;
-        transition: background-color 0.2s;
+        transition: all 0.2s;
         padding: 0;
         position: relative;
         line-height: 0;
@@ -75,7 +77,7 @@ $font-family: 'Nunito Sans', sans-serif;
         }
 
         &:hover::after {
-            background-color: rgba(0, 0, 0, 0.1);
+            background-color: var(--highlight-border);
         }
     }
 }
@@ -85,9 +87,9 @@ $font-family: 'Nunito Sans', sans-serif;
     align-items: center;
     justify-content: center;
     height: 150px;
-    font-family: $font-family;
+    font-family: var(--font-family);
     font-size: 150px;
-    color: $black;
+    color: var(--text-color);
     line-height: 150px;
     min-width: 600px;
     margin: 0 20px;
@@ -117,15 +119,20 @@ $font-family: 'Nunito Sans', sans-serif;
     height: 151px;
     border-radius: 50%;
     border: none;
-    background-color: $primary-green;
-    color: $white;
-    font-family: $font-family;
+    background-color: var(--highlight-primary);
+    color: white;
+    font-family: var(--font-family);
     font-size: 1.5rem;
     cursor: pointer;
     transition: background-color 0.2s;
 
     &:hover {
-        background-color: darken($primary-green, 5%);
+        background-color: var(--highlight-primary-hover);
+    }
+
+    &:disabled {
+        background-color: var(--border-color);
+        cursor: not-allowed;
     }
 }
 
@@ -149,11 +156,13 @@ $font-family: 'Nunito Sans', sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
-    
+    cursor: pointer;
+
     span {
-        font-family: $font-family;
+        font-family: var(--font-family);
         font-size: 16px;
         margin-bottom: 2px;
+        color: var(--text-color);
     }
 }
 
@@ -176,16 +185,16 @@ $font-family: 'Nunito Sans', sans-serif;
 .recentContainer {
     width: 225px;
     height: 225px;
-    background-color: rgba(238, 238, 238, 0.5);
+    background-color: var(--bg-secondary);
     border-radius: 10px;
     margin-top: 20px;
     padding: 0;
-    transition: height 0.3s ease;
+    transition: all 0.3s ease;
     overflow: hidden;
 
     &.collapsed {
         height: 40px;
-        
+
         .recentList {
             opacity: 0;
         }
@@ -198,15 +207,16 @@ $font-family: 'Nunito Sans', sans-serif;
     align-items: center;
     margin-bottom: 15px;
     position: relative;
-    background-color: rgba(219, 219, 219, 0.5);
+    background-color: var(--input-bg);
     height: 40px;
     width: 100%;
     border-radius: 10px 10px 0 0;
 
     span {
-        font-family: $font-family;
+        font-family: var(--font-family);
         font-size: 16px;
         font-weight: 600;
+        color: var(--text-color);
     }
 }
 
@@ -220,7 +230,7 @@ $font-family: 'Nunito Sans', sans-serif;
     cursor: pointer;
     font-size: 20px;
     padding: 0;
-    color: $black;
+    color: var(--text-color);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -271,7 +281,7 @@ $font-family: 'Nunito Sans', sans-serif;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: var(--modal-overlay);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -279,16 +289,17 @@ $font-family: 'Nunito Sans', sans-serif;
 }
 
 .modalContent {
-    background-color: white;
+    background-color: var(--bg-secondary);
     padding: 20px;
     border-radius: 10px;
     position: relative;
     width: 500px;
-    
+
     h2 {
         text-align: center;
         margin-bottom: 20px;
-        font-family: $font-family;
+        font-family: var(--font-family);
+        color: var(--text-color);
     }
 }
 
@@ -300,7 +311,12 @@ $font-family: 'Nunito Sans', sans-serif;
     border: none;
     font-size: 20px;
     cursor: pointer;
-    color: $black;
+    color: var(--text-color);
+    transition: color 0.2s;
+
+    &:hover {
+        color: var(--text-secondary);
+    }
 }
 
 .shopItems {
@@ -330,18 +346,19 @@ $font-family: 'Nunito Sans', sans-serif;
     padding: 5px 15px;
     border: none;
     border-radius: 15px;
-    background-color: $primary-green;
+    background-color: var(--highlight-primary);
     color: white;
     cursor: pointer;
-    font-family: $font-family;
-    
+    font-family: var(--font-family);
+    transition: background-color 0.2s;
+
     &:disabled {
-        background-color: #ccc;
+        background-color: var(--border-color);
         cursor: not-allowed;
     }
-    
+
     &:not(:disabled):hover {
-        background-color: darken($primary-green, 5%);
+        background-color: var(--highlight-primary-hover);
     }
 }
 
@@ -351,13 +368,13 @@ $font-family: 'Nunito Sans', sans-serif;
     padding: 10px 20px;
     border: none;
     border-radius: 15px;
-    background-color: #f0f0f0;
-    color: $black;
-    font-family: $font-family;
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    font-family: var(--font-family);
     cursor: pointer;
-    transition: background-color 0.2s;
+    transition: all 0.2s;
 
     &:hover {
-        background-color: darken(#f0f0f0, 5%);
+        background-color: var(--input-focus-bg);
     }
 }

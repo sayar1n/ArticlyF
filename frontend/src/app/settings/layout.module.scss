@@ -1,7 +1,7 @@
 .settingsLayout {
     display: flex;
     min-height: 100vh;
-    background-color: #fff;
+    background-color: var(--bg-color);
 }
 
 .content {
@@ -9,5 +9,5 @@
     padding: 40px;
     max-width: 800px;
     margin: 0 auto;
-    background-color: #fff;
+    background-color: var(--bg-color);
 }

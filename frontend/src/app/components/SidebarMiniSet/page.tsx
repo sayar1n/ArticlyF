@@ -4,8 +4,14 @@ import Link from 'next/link';
 import styles from './page.module.scss';
 import { useState } from 'react';
 import SidebarFullSet from '../SidebarFullSet/page';
+import ProfileModal from '../ProfileModal/page';
 
-export default function SidebarMini() {
+interface SidebarMiniSetProps {
+    isProfileModalOpen: boolean;
+    setIsProfileModalOpen: (isOpen: boolean) => void;
+}
+
+export default function SidebarMiniSet({ isProfileModalOpen, setIsProfileModalOpen }: SidebarMiniSetProps) {
     const [isExpanding, setIsExpanding] = useState(false);
     const [showFull, setShowFull] = useState(false);
 
@@ -80,9 +86,14 @@ export default function SidebarMini() {
                     </Link>
                 </div>
                 <div className={styles.line}></div>
-                <div className={styles.profile}>
+                <div className={styles.profile} onClick={() => setIsProfileModalOpen(true)}>
                     <div className={styles.circle}>A</div>
                 </div>
+                <ProfileModal 
+                isOpen={isProfileModalOpen}
+                onClose={() => setIsProfileModalOpen(false)}
+                userName="Alex"
+            />
             </div>
         </div>
     );

@@ -30,7 +30,7 @@ export default function Footer() {
         <footer>
             <div className={styles.footer}>
                 <div className={styles.leftSection}>
-                    <div className={styles.logo}>пока пусто</div>
+                    <div className={styles.logo}>Articly</div>
                 </div>
                 <div className={styles.rightSection}>
                     <div className={styles.linksGrid}>

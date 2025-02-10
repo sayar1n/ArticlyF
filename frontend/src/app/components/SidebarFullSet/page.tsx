@@ -4,10 +4,13 @@ import Link from 'next/link';
 import styles from './page.module.scss';
 import { useState } from 'react';
 import SidebarMiniSet from '../SidebarMiniSet/page';
+import ProfileModal from '../ProfileModal/page';
+
 
 export default function SidebarFullSet() {
     const [isCollapsing, setIsCollapsing] = useState(false);
     const [showMini, setShowMini] = useState(false);
+    const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
 
     const handleToggle = () => {
         setIsCollapsing(true);
@@ -17,7 +20,10 @@ export default function SidebarFullSet() {
     };
 
     if (showMini) {
-        return <SidebarMiniSet />;
+        return <SidebarMiniSet 
+            isProfileModalOpen={isProfileModalOpen}
+            setIsProfileModalOpen={setIsProfileModalOpen}
+        />;
     }
 
     return (
@@ -104,15 +110,18 @@ export default function SidebarFullSet() {
                     </Link>
                 </div>
                 <div className={styles.line}></div>
-                <div className={styles.profileBlock}>
-                    <Link href="/profile" className={styles.link}>
-                        <div className={styles.profile}>
-                            <div className={styles.circle}>A</div>
-                        </div>
-                        Профиль
-                    </Link>
+                <div className={styles.profileBlock} onClick={() => setIsProfileModalOpen(true)}>
+                    <div className={styles.profile}>
+                        <div className={styles.circle}>A</div>
+                    </div>
+                    Профиль
                 </div>
             </div>
+            <ProfileModal
+                isOpen={isProfileModalOpen}
+                onClose={() => setIsProfileModalOpen(false)}
+                userName="Alex"
+            />
         </div>
     );
 }

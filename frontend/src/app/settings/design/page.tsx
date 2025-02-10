@@ -1,7 +1,9 @@
 "use client"
 
-import { useState } from 'react';
+import { useTheme } from 'next-themes';
+import { useState, useEffect } from 'react';
 import styles from "./page.module.scss"
+import api from '@/app/utils/api';
 
 interface ThemeOption {
     id: string;
@@ -15,11 +17,38 @@ interface ColorScheme {
     colors: string[];
 }
 
+interface ThemeSettings {
+    theme: string;
+    color: string;
+    scheme: string;
+    fontSize: number;
+}
+
 export default function DesignSettings() {
     const [selectedTheme, setSelectedTheme] = useState('system');
     const [selectedColor, setSelectedColor] = useState('default');
     const [selectedScheme, setSelectedScheme] = useState('green');
     const [fontSize, setFontSize] = useState(16);
+    const [loading, setLoading] = useState(false);
+    const { theme, setTheme } = useTheme();
+
+    // Загрузка сохраненных настроек при монтировании компонента
+    useEffect(() => {
+        const loadSettings = async () => {
+            try {
+                const response = await api.get('/user/theme-settings');
+                const settings = response.data;
+                setSelectedTheme(settings.theme || 'system');
+                setSelectedColor(settings.color || 'default');
+                setSelectedScheme(settings.scheme || 'green');
+                setFontSize(settings.fontSize || 16);
+                setTheme(settings.theme || 'system');
+            } catch (error) {
+                console.error('Ошибка при загрузке настроек:', error);
+            }
+        };
+        loadSettings();
+    }, [setTheme]);
 
     const themeOptions: ThemeOption[] = [
         { id: 'system', name: 'Системная', value: 'system' },
@@ -64,12 +93,33 @@ export default function DesignSettings() {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        console.log('Сохранено:', {
-            theme: selectedTheme,
-            color: selectedColor,
-            scheme: selectedScheme,
-            fontSize
-        });
+        setLoading(true);
+
+        try {
+            // Сохраняем настройки на бэкенде
+            await api.post('/user/theme-settings', {
+                theme: selectedTheme,
+                color: selectedColor,
+                scheme: selectedScheme,
+                fontSize
+            });
+
+            // Применяем все настройки
+            setTheme(selectedTheme);
+            document.documentElement.style.fontSize = `${fontSize}px`;
+            document.documentElement.setAttribute('data-color-scheme', selectedScheme);
+            document.documentElement.setAttribute('data-accent-color', selectedColor);
+
+        } catch (error) {
+            console.error('Ошибка при сохранении настроек:', error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleThemeChange = (value: string) => {
+        setSelectedTheme(value);
+        setTheme(value); // Применяем тему сразу при выборе
     };
 
     return (
@@ -89,7 +139,7 @@ export default function DesignSettings() {
                                 name="theme"
                                 value={option.value}
                                 checked={selectedTheme === option.value}
-                                onChange={(e) => setSelectedTheme(e.target.value)}
+                                onChange={(e) => handleThemeChange(e.target.value)}
                             />
                             <span className={styles.optionContent}>
                                 <span className={styles.optionName}>{option.name}</span>
@@ -173,8 +223,12 @@ export default function DesignSettings() {
                 </div>
             </div>
 
-            <button type="submit" className={styles['submit-button']}>
-                Сохранить изменения
+            <button
+                type="submit"
+                className={styles['submit-button']}
+                disabled={loading}
+            >
+                {loading ? 'Сохранение...' : 'Сохранить изменения'}
             </button>
         </form>
     );
