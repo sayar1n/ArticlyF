@@ -23,7 +23,7 @@ docker-compose down
 ```
 ## Разработка
 
-Frontend будет доступен по адресу: http://localhost:3000
+Frontend будет доступен по адресу: https://articly.ru/api
 
 ### Структура Docker файлов
 

@@ -1,6 +1,5 @@
 "use client"
 
-import { useTheme } from 'next-themes';
 import { useState, useEffect } from 'react';
 import styles from "./page.module.scss"
 import api from '@/app/utils/api';
@@ -30,7 +29,6 @@ export default function DesignSettings() {
     const [selectedScheme, setSelectedScheme] = useState('green');
     const [fontSize, setFontSize] = useState(16);
     const [loading, setLoading] = useState(false);
-    const { theme, setTheme } = useTheme();
 
     // Загрузка сохраненных настроек при монтировании компонента
     useEffect(() => {
@@ -42,13 +40,14 @@ export default function DesignSettings() {
                 setSelectedColor(settings.color || 'default');
                 setSelectedScheme(settings.scheme || 'green');
                 setFontSize(settings.fontSize || 16);
-                setTheme(settings.theme || 'system');
+                // Применяем тему
+                document.documentElement.setAttribute('data-theme', settings.theme || 'system');
             } catch (error) {
                 console.error('Ошибка при загрузке настроек:', error);
             }
         };
         loadSettings();
-    }, [setTheme]);
+    }, []);
 
     const themeOptions: ThemeOption[] = [
         { id: 'system', name: 'Системная', value: 'system' },
@@ -104,8 +103,8 @@ export default function DesignSettings() {
                 fontSize
             });
 
-            // Применяем все настройки
-            setTheme(selectedTheme);
+            // Применяем настройки
+            document.documentElement.setAttribute('data-theme', selectedTheme);
             document.documentElement.style.fontSize = `${fontSize}px`;
             document.documentElement.setAttribute('data-color-scheme', selectedScheme);
             document.documentElement.setAttribute('data-accent-color', selectedColor);
@@ -119,13 +118,13 @@ export default function DesignSettings() {
 
     const handleThemeChange = (value: string) => {
         setSelectedTheme(value);
-        setTheme(value); // Применяем тему сразу при выборе
+        document.documentElement.setAttribute('data-theme', value);
     };
 
     return (
         <form onSubmit={handleSubmit} className={styles.container}>
             <h1>Дизайн</h1>
-
+            
             <div className={styles.section}>
                 <h2>Тема</h2>
                 <div className={styles.optionsGrid}>

@@ -11,5 +11,5 @@ services:
       - /app/.next
     environment:
       - NODE_ENV=development
-      - NEXT_PUBLIC_API_URL=http://localhost:8061
+      - NEXT_PUBLIC_API_URL=https://articly.ru/api
     restart: unless-stopped

@@ -14,7 +14,7 @@ export default function SignUp() {
   const router = useRouter();
 
   const api = axios.create({
-    baseURL: "http://localhost:8061",
+    baseURL: "https://articly.ru/api",
     withCredentials: true,
     headers: {
       "Content-Type": "application/json",
